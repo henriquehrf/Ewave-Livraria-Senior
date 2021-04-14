@@ -6,3 +6,13 @@
 /ToDo-API/Livraria.ToDo/src/ToDo.Application/bin/Debug/net5.0
 /ToDo-API/Livraria.ToDo/.vs/Livraria.ToDo/v16
 /ToDo-API/Livraria.ToDo/src/ToDo.Application/obj
+/ToDo-API/Livraria.ToDo/src/ToDo.Domain/bin/Debug/net5.0
+/ToDo-API/Livraria.ToDo/src/ToDo.Domain/obj
+/ToDo-API/Livraria.ToDo/src/Todo.Infra.CrossCutting/bin/Debug/net5.0
+/ToDo-API/Livraria.ToDo/src/Todo.Infra.CrossCutting/obj
+/ToDo-API/Livraria.ToDo/src/ToDo.Infra.Dapper/bin/Debug/net5.0
+/ToDo-API/Livraria.ToDo/src/ToDo.Infra.Dapper/obj
+/ToDo-API/Livraria.ToDo/src/ToDo.Infra.EF/bin/Debug/net5.0
+/ToDo-API/Livraria.ToDo/src/ToDo.Infra.EF/obj
+/ToDo-API/Livraria.ToDo/src/ToDo.Service/bin/Debug/net5.0
+/ToDo-API/Livraria.ToDo/src/ToDo.Service/obj
