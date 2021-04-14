@@ -58,6 +58,7 @@ namespace ToDo.Domain.Entities
 		public virtual InstituicaoEnsino InstituicaoEnsino { get; }
 
 		public virtual ICollection<Emprestimo> Emprestimos { get; } = new HashSet<Emprestimo>();
+		public virtual ICollection<Reserva> Reservas { get; } = new HashSet<Reserva>();
 
 	}
 }

@@ -2,10 +2,11 @@
 
 namespace ToDo.Domain.Entities
 {
-	public class Reserva
+	public class Reserva : BaseEntity<int>
 	{
-		public Reserva(int idUsuario, int idLivro, DateTime dataReserva, bool ativo)
+		public Reserva(int id, int idUsuario, int idLivro, DateTime dataReserva, bool ativo)
 		{
+			Id = id;
 			IdUsuario = idUsuario;
 			IdLivro = idLivro;
 			DataReserva = dataReserva;
