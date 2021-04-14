@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/ToDo-API/Livraria.ToDo/src/ToDo.Application/bin/Debug/net5.0
+/ToDo-API/Livraria.ToDo/.vs/Livraria.ToDo/v16
+/ToDo-API/Livraria.ToDo/src/ToDo.Application/obj
