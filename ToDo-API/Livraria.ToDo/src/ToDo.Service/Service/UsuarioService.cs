@@ -26,5 +26,14 @@ namespace ToDo.Service.Service
 
 			return usuario;
 		}
+
+		public void Alterar(Usuario usuario)
+		{
+			_notificationContext.AddNotifications(usuario.Notifications);
+
+			if (_notificationContext.Valid)
+				_usuarioRepository.Alterar(usuario);
+		}
+
 	}
 }

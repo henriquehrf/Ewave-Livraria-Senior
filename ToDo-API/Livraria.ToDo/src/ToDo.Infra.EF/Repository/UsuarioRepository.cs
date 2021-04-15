@@ -10,11 +10,21 @@ namespace ToDo.Infra.Data.EF.Repository
 		{
 		}
 
+		public Usuario BuscarPorId(int id)
+		{
+			return base.ById(id);
+		}
+
+		void IUsuarioRepository.Alterar(Usuario usuario)
+		{
+			base.Alterar(usuario);
+		}
+
 		Usuario IUsuarioRepository.Inserir(Usuario usuario)
 		{
 			return base.Inserir(usuario);
 		}
 
-		
+
 	}
 }

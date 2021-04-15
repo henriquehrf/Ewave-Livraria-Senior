@@ -12,43 +12,43 @@ namespace ToDo.Application.Controllers
 {
 	[ApiController]
 	[Route("api/[controller]/")]
-	public class UsuarioController : Controller
+	public class InstituicaoEnsinoController : Controller
 	{
 		private readonly IUnitOfWork _unitOfWork;
-		private readonly IUsuarioService _usuarioService;
+		private readonly IInstituicaoEnsinoService _instituicaoEnsinoService;
 		private readonly NotificationContext _notificationContext;
 
-		public UsuarioController(IUnitOfWork unitOfWork, 
-								IUsuarioService usuarioService, 
-								NotificationContext notificationContext)
+		public InstituicaoEnsinoController(IUnitOfWork unitOfWork, 
+											IInstituicaoEnsinoService instituicaoEnsinoService, 
+											NotificationContext notificationContext)
 		{
 			_unitOfWork = unitOfWork;
-			_usuarioService = usuarioService;
+			_instituicaoEnsinoService = instituicaoEnsinoService;
 			_notificationContext = notificationContext;
 		}
 
-		[HttpPost("inserir-usuario")]
-		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(UsuarioViewModel))]
+		[HttpPost("inserir-instituicao-ensino")]
+		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(InstituicaoEnsinoViewModel))]
 		[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IList<NotificationResponse>))]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
-		public IActionResult InserirUsuario(UsuarioViewModel usuarioVm)
+		public IActionResult InserirUsuario(InstituicaoEnsinoViewModel instituicaoVm)
 		{
-			var usuario = _usuarioService.Inserir(usuarioVm.ToEntity());
-			if(_notificationContext.Notifications.Count > 0)
+			var instituicao = _instituicaoEnsinoService.Inserir(instituicaoVm.ToEntity());
+			if (_notificationContext.Notifications.Count > 0)
 				return BadRequest(_notificationContext.Notifications);
 
 			_unitOfWork.Commit();
 			_unitOfWork.Dispose();
-			return StatusCode(StatusCodes.Status201Created, usuario.ToModel());
+			return StatusCode(StatusCodes.Status201Created, instituicao.ToModel());
 		}
 
-		[HttpPut("alterar-usuario")]
+		[HttpPut("alterar-instituicao-ensino")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IList<NotificationResponse>))]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
-		public IActionResult Alterar(UsuarioViewModel usuarioVm)
+		public IActionResult Alterar(InstituicaoEnsinoViewModel instituicaoVm)
 		{
-			 _usuarioService.Alterar(usuarioVm.ToEntity());
+			_instituicaoEnsinoService.Alterar(instituicaoVm.ToEntity());
 			if (_notificationContext.Notifications.Count > 0)
 				return BadRequest(_notificationContext.Notifications);
 

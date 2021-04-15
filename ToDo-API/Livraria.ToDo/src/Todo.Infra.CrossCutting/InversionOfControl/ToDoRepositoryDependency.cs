@@ -15,7 +15,7 @@ namespace Todo.Infra.CrossCutting.InversionOfControl
 			//services.AddScoped<ILivroRepository, LivroRepository>();
 			services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
-			//services.AddScoped<IInstituicaoEnsinoRepository, InstituicaoEnsinoRepository>();
+			services.AddScoped<IInstituicaoEnsinoRepository, InstituicaoEnsinoRepository>();
 		}
 	}
 }

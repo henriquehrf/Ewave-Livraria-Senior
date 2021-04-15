@@ -29,7 +29,6 @@ namespace ToDo.Infra.Shared.ObjectMapper
 			Endereco = objRepository.Endereco.ToString(),
 			Cpf = objRepository.Cpf.ToString(),
 			InstituicaoEnsinoId = objRepository.IdInstituicaoEnsino,
-			InstituicaoEnsinoDescricao = objRepository.InstituicaoEnsino?.Nome.ToString(),
 			Telefone = objRepository.Telefone.ToString(),
 			Email = objRepository.Email.ToString(),
 			Login = objRepository.Login,
