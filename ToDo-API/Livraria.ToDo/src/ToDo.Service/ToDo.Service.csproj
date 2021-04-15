@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ToDo.Domain\ToDo.Domain.csproj" />
+    <ProjectReference Include="..\ToDo.Infra.Shared\ToDo.Infra.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

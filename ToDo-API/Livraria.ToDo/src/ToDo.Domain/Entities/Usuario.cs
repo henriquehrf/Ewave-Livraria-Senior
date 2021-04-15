@@ -51,7 +51,7 @@ namespace ToDo.Domain.Entities
 		public string Senha { get; }
 		public DateTime? DataSuspencao { get; }
 		public int PerfilUsuario { get; }
-		public Guid? GuidFoto { get; set; }
+		public Guid? GuidFoto { get; }
 		public int IdInstituicaoEnsino { get; }
 		public bool Ativo { get; }
 

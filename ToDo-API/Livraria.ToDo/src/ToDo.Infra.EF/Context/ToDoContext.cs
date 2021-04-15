@@ -9,7 +9,7 @@ using ToDo.Infra.Data.EF.Mapping;
 
 namespace ToDo.Infra.Data.EF.Context
 {
-	public class ToDoContext : DbContext, IUnitOfWork
+	public class ToDoContext : DbContext
 	{
 		public ToDoContext(DbContextOptions<ToDoContext> options) : base(options)
 		{
@@ -43,17 +43,6 @@ namespace ToDo.Infra.Data.EF.Context
 				modelBuilder.Entity(item).Ignore(nameof(Notifiable.Valid));
 				modelBuilder.Entity(item).Ignore(nameof(Notifiable.Notifications));
 			}
-		}
-
-		public void Commit()
-		{
-			SaveChanges();
-		}
-
-		void IDisposable.Dispose()
-		{
-			Dispose();
-			GC.SuppressFinalize(this);
 		}
 	}
 }

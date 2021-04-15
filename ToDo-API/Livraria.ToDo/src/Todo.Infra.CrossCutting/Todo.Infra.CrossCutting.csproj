@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ToDo.Infra.EF\ToDo.Infra.Data.EF.csproj" />
     <ProjectReference Include="..\ToDo.Infra.Shared\ToDo.Infra.Shared.csproj" />
+    <ProjectReference Include="..\ToDo.Service\ToDo.Service.csproj" />
   </ItemGroup>
 
 </Project>

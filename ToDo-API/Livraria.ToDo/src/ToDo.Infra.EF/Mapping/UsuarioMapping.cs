@@ -29,7 +29,7 @@ namespace ToDo.Infra.Data.EF.Mapping
 			  .HasConversion(prop => prop.ToString(), prop => prop)
 			  .IsRequired()
 			  .HasColumnName("Cpf")
-			  .HasColumnType("varchar(14)");
+			  .HasColumnType("char(14)");
 
 			builder.Property(prop => prop.IdInstituicaoEnsino)
 			  .IsRequired()
@@ -54,7 +54,7 @@ namespace ToDo.Infra.Data.EF.Mapping
 			builder.Property(prop => prop.Senha)
 			  .IsRequired()
 			  .HasColumnName("Senha")
-			  .HasColumnType("varchar(100)");
+			  .HasColumnType("varchar(500)");
 
 			builder.Property(prop => prop.DataSuspencao)
 			  .HasColumnName("DataSuspencao")

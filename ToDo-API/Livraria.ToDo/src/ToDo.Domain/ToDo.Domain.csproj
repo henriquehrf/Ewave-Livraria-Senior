@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Enum\" />
-    <Folder Include="Models\" />
+    <Folder Include="Models\Dtos\" />
   </ItemGroup>
 
   <ItemGroup>
