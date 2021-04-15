@@ -12,7 +12,7 @@ namespace Todo.Infra.CrossCutting.InversionOfControl
 		public static void AddRepositoryDependency(this IServiceCollection services)
 		{
 			//services.AddScoped<IEmprestimoRepository, EmprestimoRepository>();
-			//services.AddScoped<ILivroRepository, LivroRepository>();
+			services.AddScoped<ILivroRepository, LivroRepository>();
 			services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			services.AddScoped<IInstituicaoEnsinoRepository, InstituicaoEnsinoRepository>();
