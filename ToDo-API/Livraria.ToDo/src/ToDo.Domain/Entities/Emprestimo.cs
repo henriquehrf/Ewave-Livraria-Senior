@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ToDo.Domain.Entities
 {
@@ -24,12 +20,18 @@ namespace ToDo.Domain.Entities
 			DataPrevistaDevolucao = dataPrevistaDevolucao;
 		}
 
-		public int IdUsuario { get; }
-		public int IdLivro { get; }
-		public DateTime DataEmprestimo { get; }
-		public DateTime? DataDevolucao { get; }
-		public DateTime DataPrevistaDevolucao { get; }
-		public virtual Usuario Usuario { get; }
-		public virtual Livro Livro { get; }
+		public int IdUsuario { get; private set; }
+		public int IdLivro { get; private set; }
+		public DateTime DataEmprestimo { get; private set; }
+		public DateTime? DataDevolucao { get; private set; }
+		public DateTime DataPrevistaDevolucao { get; private set; }
+		public virtual Usuario Usuario { get; private set; }
+		public virtual Livro Livro { get; private set; }
+
+
+		public void DevolverEmprestimo()
+		{
+			DataDevolucao = DateTime.Now;
+		}
 	}
 }
