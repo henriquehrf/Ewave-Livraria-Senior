@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ToDo.Domain\ToDo.Domain.csproj" />
     <ProjectReference Include="..\ToDo.Infra.Shared\ToDo.Infra.Shared.csproj" />
   </ItemGroup>

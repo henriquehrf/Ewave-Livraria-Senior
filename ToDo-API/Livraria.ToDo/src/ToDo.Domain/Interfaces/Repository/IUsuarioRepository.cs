@@ -7,7 +7,7 @@ namespace ToDo.Domain.Interfaces.Repository
 		Usuario Inserir(Usuario usuario);
 		void Alterar(Usuario usuario);
 		Usuario BuscarPorId(int id);
-		//UsuarioModel UsuarioPorLogin(string login);
+		Usuario UsuarioPorLogin(string login);
 		//UsuarioModel UsuarioPorId(int id);
 		//IEnumerable<UsuarioModel> Todos();
 		//IEnumerable<UsuarioModel> UsuarioPorNome(string nome);

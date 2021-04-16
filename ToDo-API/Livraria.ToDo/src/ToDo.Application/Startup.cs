@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Todo.Infra.CrossCutting.Filter;
 using Todo.Infra.CrossCutting.InversionOfControl;
+using Todo.Infra.CrossCutting.Token;
 
 namespace ToDo.Application
 {
@@ -22,7 +23,7 @@ namespace ToDo.Application
 		public void ConfigureServices(IServiceCollection services)
 		{
 
-			services.AddControllers();
+			services.AddControllers().AddNewtonsoftJson();
 
 			services.AddRouting(options => options.LowercaseUrls = true);
 
@@ -36,6 +37,7 @@ namespace ToDo.Application
 			services.AddServiceDependency();
 			services.AddRepositoryDependency();
 			services.AddNotificationDependency();
+			services.ConfigureToken(Configuration);
 			services.AddSwaggerGen(c =>
 			{
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "ToDo.Application", Version = "v1" });
@@ -57,6 +59,10 @@ namespace ToDo.Application
 			}
 
 			app.UseHttpsRedirection();
+			app.UseCors(builder => builder
+				.AllowAnyOrigin()
+				.AllowAnyMethod()
+				.AllowAnyHeader());
 
 			app.UseRouting();
 

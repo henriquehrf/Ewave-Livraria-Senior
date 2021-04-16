@@ -12,7 +12,7 @@ namespace Todo.Infra.CrossCutting.InversionOfControl
 			services.AddScoped<IInstituicaoEnsinoService, InstituicaoEnsinoService>();
 			services.AddScoped<ILivroService, LivroService>();
 			services.AddScoped<IEmprestimoService, EmprestimoService>();
-			//services.AddScoped<ILoginService, LoginService>();
+			services.AddScoped<ILoginService, LoginService>();
 			//services.AddScoped<IReservaService, ReservaService>();
 		}
 	}
