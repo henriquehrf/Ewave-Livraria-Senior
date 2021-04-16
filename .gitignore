@@ -19,3 +19,49 @@
 /ToDo-API/Livraria.ToDo/src/ToDo.Infra.Shared/bin/Debug/net5.0
 /ToDo-API/Livraria.ToDo/src/ToDo.Infra.Shared/obj
 /ToDo-API/Livraria.ToDo/.vs/Livraria.ToDo/DesignTimeBuild/.dtbcache.v2
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+/ToDo-UI/ewave-livraria-senior/dist/ewave-livraria-senior
+/ToDo-UI/ewave-livraria-senior/node_modules/.bin/acorn
+/ToDo-UI/ewave-livraria-senior/node_modules
+/ToDo-UI/ewave-livraria-senior/.vscode
+*.gitkeep

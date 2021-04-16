@@ -1,0 +1,37 @@
+<div [hidden]="exibeFormularioNovo" class="container-fluid">
+    <div class="input-group m-4">
+        <button class="btn btn-primary mr-2" (click)="novo()" [hidden]="(user$ | async)?.idPerfil != 1">Novo</button>
+        <todo-search (textoPesquisado)="preencherTermoPesquisa($event)"></todo-search>
+        <button class="btn ml-2" (click)="buscarDados()"><i class="fa fa-search" aria-hidden="true"></i></button>
+    </div>
+
+    <div class="row m-4">
+        <div class="col-md-4 p-2" apDarkenOnHover style="border: 1px solid black; border-radius: 25px;"
+            *ngFor="let livro of livros | async">
+            <img src="https://localhost:44350/api/imagem/{{livro.guidCapa}}" class="rounded float-left"
+                style="max-width: 40%; margin: 10px;" />
+            <div class="text-center p-1">
+            </div>
+            <div style="word-wrap: break-word;">
+                <strong>Título: </strong>{{livro.titulo}}
+            </div>
+            <div style="word-wrap: break-word;">
+                <strong>Genero: </strong>{{livro.genero}}
+            </div>
+            <div style="word-wrap: break-word;">
+                <strong>Autor: </strong>{{livro.autor}}
+            </div>
+            <div style="word-wrap: break-word;">
+                <strong>Sinopse: </strong>{{livro.sinopse}}
+            </div>
+            <div class="mt-2">
+                <button class="btn btn-dark mr-4" [hidden]="!livro.disponibilidade" (click)="emprestar(livro)">Emprestar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div [hidden]="!exibeFormularioNovo" class="container-fluid">
+    <todo-livro (exibeMenuNovo)="voltar()" [livro]="livroSelecionado">
+    </todo-livro>
+</div>

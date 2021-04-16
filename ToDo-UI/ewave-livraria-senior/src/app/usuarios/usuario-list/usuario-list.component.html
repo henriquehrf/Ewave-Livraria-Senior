@@ -1,0 +1,41 @@
+<div [hidden]="exibeFormularioNovo">
+    <div class="input-group m-4">
+        <button class="btn btn-primary mr-2" (click)="novo()">Novo</button>
+          <todo-search (textoPesquisado)="preencherTermoPesquisa($event)"></todo-search>
+        <button class="btn ml-2" (click)="buscarDados()"><i class="fa fa-search" aria-hidden="true"></i></button> 
+    </div>
+
+    <table class="table m-4">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Telfone</th>
+                <th scope="col">Email</th>
+                <th scope="col">Instituição de Ensino</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios | async">
+                <td scope="row">{{usuario.id}}</td>
+                <td scope="row">{{usuario.nome}}</td>
+                <td scope="row">{{usuario.cpf}}</td>
+                <td scope="row">{{usuario.telefone}}</td>
+                <td scope="row">{{usuario.email}}</td>
+                <td scope="row">{{usuario.instituicaoEnsinoDescricao}}</td>
+                <td><button (click)=editar(usuario) class="btn mr-2"><i class="fa fa-pencil"
+                            aria-hidden="true"></i></button>
+                    <button class="btn" style="background-color: #F08080;" (click)="remover(usuario)"><i
+                            class="fa fa-trash text-white" aria-hidden="true"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div [hidden]="!exibeFormularioNovo">
+    <todo-usuario (exibeMenuNovo)="voltar()" [usuario]="usuarioSelecionado">
+    </todo-usuario>
+</div>

@@ -1,0 +1,38 @@
+<div [hidden]="exibeFormularioNovo" class="container-fluid">
+    <div class="input-group m-4">
+        <button class="btn btn-primary mr-2" (click)="novo()">Novo</button>
+        <todo-search (textoPesquisado)="preencherTermoPesquisa($event)"></todo-search>
+        <button class="btn ml-2" (click)="buscarDados()"><i class="fa fa-search" aria-hidden="true"></i></button>
+    </div>
+
+    <table class="table m-4">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">CNPJ</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Endereço</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let instituicao of instituicoes | async">
+                <td scope="row">{{instituicao.id}}</td>
+                <td scope="row">{{instituicao.nome}}</td>
+                <td scope="row">{{instituicao.cnpj}}</td>
+                <td scope="row">{{instituicao.telefone}}</td>
+                <td scope="row">{{instituicao.endereco}}</td>
+                <td><button (click)=editar(instituicao) class="btn mr-2"><i class="fa fa-pencil"
+                            aria-hidden="true"></i></button>
+                    <button class="btn" style="background-color: #F08080;" (click)="remover(instituicao)"><i class="fa fa-trash text-white" aria-hidden="true"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div [hidden]="!exibeFormularioNovo" class="container-fluid">
+    <todo-instituicao-ensino (exibeMenuNovo)="voltar()" [instituicao]="instituicaoSelecionada">
+    </todo-instituicao-ensino>
+</div>
