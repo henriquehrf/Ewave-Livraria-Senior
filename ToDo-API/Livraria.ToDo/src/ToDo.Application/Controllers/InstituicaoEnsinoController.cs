@@ -27,7 +27,7 @@ namespace ToDo.Application.Controllers
 			_notificationContext = notificationContext;
 		}
 
-		[HttpPost("inserir-instituicao-ensino")]
+		[HttpPost("inserir")]
 		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(InstituicaoEnsinoViewModel))]
 		[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IList<NotificationResponse>))]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
@@ -42,7 +42,7 @@ namespace ToDo.Application.Controllers
 			return StatusCode(StatusCodes.Status201Created, instituicao.ToModel());
 		}
 
-		[HttpPut("alterar-instituicao-ensino")]
+		[HttpPut("alterar")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IList<NotificationResponse>))]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]

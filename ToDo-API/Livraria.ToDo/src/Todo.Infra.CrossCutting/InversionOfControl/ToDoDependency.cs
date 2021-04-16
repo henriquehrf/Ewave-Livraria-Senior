@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ToDo.Infra.Dapper.Provider;
 using ToDo.Infra.Data.EF.Context;
 
 namespace Todo.Infra.CrossCutting.InversionOfControl
@@ -13,6 +14,8 @@ namespace Todo.Infra.CrossCutting.InversionOfControl
 			{
 				context.UseSqlServer(configuration["ConnectionString"]);
 			});
+
+			services.Configure<DbProvider>(config => config.ConnectionString = configuration["ConnectionString"]);
 		}
 	}
 }

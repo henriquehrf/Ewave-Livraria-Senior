@@ -36,6 +36,7 @@ namespace ToDo.Application
 			services.AddDependencySql(Configuration);
 			services.AddServiceDependency();
 			services.AddRepositoryDependency();
+			services.AddFinderDependency();
 			services.AddNotificationDependency();
 			services.ConfigureToken(Configuration);
 			services.AddSwaggerGen(c =>

@@ -28,7 +28,7 @@ namespace ToDo.Application.Controllers
 		}
 
 
-		[HttpPost("inserir-emprestimo")]
+		[HttpPost("inserir")]
 		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(EmprestimoViewModel))]
 		[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IList<NotificationResponse>))]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
@@ -43,7 +43,7 @@ namespace ToDo.Application.Controllers
 			return StatusCode(StatusCodes.Status201Created, emprestimo.ToModel());
 		}
 
-		[HttpPut("devolver-emprestimo")]
+		[HttpPut("devolver")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IList<NotificationResponse>))]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
