@@ -37,7 +37,8 @@ export class UsuarioFormComponent implements OnInit {
       instituicaoEnsinoId: new FormControl(),
       perfilUsuario: new FormControl(),
       login: new FormControl(),
-      senha: new FormControl()
+      senha: new FormControl(),
+      ativo: new FormControl()
     });
   }
 
@@ -46,7 +47,7 @@ export class UsuarioFormComponent implements OnInit {
     if (!ehAlteracao) {
       const usuario = this.usuarioForm.value;
       usuario.id = 0;
-      usuario.instituicaoEnsinoId = parseInt(this.usuario.instituicaoEnsinoId.toString());
+      usuario.instituicaoEnsinoId = parseInt(this.usuario.idInstituicaoEnsino.toString());
       usuario.perfilUsuario = this.usuario.perfilUsuario;
       this.usuarioService.inserirUsuario(usuario).subscribe(
         () => {
@@ -54,12 +55,15 @@ export class UsuarioFormComponent implements OnInit {
           this.voltar();
         },
         err => {
-          alert(err.error.toString());
+          if (err.status === 400)
+            alert(err.error[0].Mensagem);
+          else
+            alert(err.message);
         }
       )
     } else {
       const usuario = this.usuarioForm.value;
-      usuario.instituicaoEnsinoId = parseInt(this.usuario.instituicaoEnsinoId.toString());
+      usuario.instituicaoEnsinoId = parseInt(this.usuario.idInstituicaoEnsino.toString());
       usuario.id = this.usuario.id;
       usuario.perfilUsuario = this.usuario.perfilUsuario;
       this.usuarioService.alterarUsuario(usuario).subscribe(
@@ -68,7 +72,10 @@ export class UsuarioFormComponent implements OnInit {
           this.voltar();
         },
         err => {
-          alert(err.error.toString());
+          if (err.status === 400)
+            alert(err.error[0].Mensagem);
+          else
+            alert(err.message);
         }
       )
     }
@@ -83,19 +90,20 @@ export class UsuarioFormComponent implements OnInit {
       endereco: "",
       email: "",
       instituicaoEnsinoDescricao: "",
-      instituicaoEnsinoId: 0,
+      idInstituicaoEnsino: 0,
       perfilUsuario: 1,
       login: "",
       senha: "",
-      dataSuspencao: null
+      dataSuspencao: null,
+      ativo: false
     };
   }
 
   carregarDropdonw() {
-    this.instituicaoEnsinoService.retornarTodasInstituicaoEnsino().subscribe(
+    this.instituicaoEnsinoService.retornarInstituicaoEnsinoDropdown().subscribe(
       (response) => {
-        if (this.usuario.instituicaoEnsinoId > 0) {
-          this.definirInstituicao(this.usuario.instituicaoEnsinoId);
+        if (this.usuario.idInstituicaoEnsino > 0) {
+          this.definirInstituicao(this.usuario.idInstituicaoEnsino);
         }
         return this.instituicoesDeEnsino.next(response);
       },
@@ -106,7 +114,7 @@ export class UsuarioFormComponent implements OnInit {
   }
 
   definirInstituicao(valor) {
-    this.usuario.instituicaoEnsinoId = valor;
+    this.usuario.idInstituicaoEnsino = valor;
   }
 
   definirPerfilUsuario(valor) {

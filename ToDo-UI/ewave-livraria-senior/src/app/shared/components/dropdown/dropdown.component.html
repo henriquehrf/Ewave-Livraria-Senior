@@ -1,4 +1,3 @@
-<select class="form-control" (change)="onChange($event.target.value)" [ngModel]="selecionaValor">
-   <!--  <option *ngFor="let dado of dados | async" [value]="dado.id">{{dado.nome}}</option> -->
+<select class="form-control" (change)="onChange($event.target.value)" [ngModel]="(selecionaValor)">
     <option *ngFor="let dado of dados | async" [value]="dado.id">{{dado.nome}}</option>
 </select>

@@ -11,8 +11,9 @@ import { Usuario } from '../usuario/usuario';
 export class UsuarioListComponent implements OnInit {
 
     private usuarios = new BehaviorSubject<any>(null);
-    private usuarioSelecionado: Usuario;
+    private usuarioSelecionado: Usuario
     private termoPesquisa: string;
+    private indicePagina: number;
 
     @Input() exibeFormularioNovo: boolean;
 
@@ -20,11 +21,12 @@ export class UsuarioListComponent implements OnInit {
 
     ngOnInit(): void {
         this.termoPesquisa = "";
-        this.buscarDados();
+        this.indicePagina = 1;
+        this.buscarDados("", 1);
     }
 
-    buscarDados() {
-        this.usuarioService.buscarUsuarioPorNome(this.termoPesquisa).pipe(debounceTime(500)).subscribe(
+    buscarDados(termoPesquisa: string, pagina: number) {
+        this.usuarioService.buscarUsuarioPorNome(termoPesquisa, pagina).pipe(debounceTime(500)).subscribe(
             (response) => {
                 this.usuarios.next(response);
             },
@@ -40,26 +42,25 @@ export class UsuarioListComponent implements OnInit {
 
     voltar() {
         this.exibeFormularioNovo = false;
+        this.buscarDados("", 1);
     }
 
     editar(usuario) {
-        this.usuarioSelecionado = usuario;
+        this.usuarioSelecionado = usuario; 
         this.exibeFormularioNovo = true;
-    }
-
-    remover(usuario) {
-        this.usuarioService.removerUsuario(usuario.id).subscribe(
-            () => {
-                alert("Removido com sucesso!");
-                this.buscarDados();
-            },
-            err => {
-                alert(err.error.toString());
-            }
-        );
     }
 
     preencherTermoPesquisa(valor) {
         this.termoPesquisa = valor;
+    }
+
+    proximaPagina() {
+        this.indicePagina++;
+        this.buscarDados(this.termoPesquisa, this.indicePagina);
+    }
+
+    paginaAnterior() {
+        this.indicePagina--;
+        this.buscarDados(this.termoPesquisa, this.indicePagina);
     }
 }

@@ -35,10 +35,10 @@ export class InstituicaoEnsinoService {
             );
     }
 
-    retornarTodasInstituicaoEnsino() {
+    retornarInstituicaoEnsinoDropdown() {
         return this.http
             .get(
-                API_URL + '/api/instituicao-ensino'
+                API_URL + '/api/instituicaoensino/instituicao-ensino-dropdown'
             );
     }
 

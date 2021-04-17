@@ -26,7 +26,7 @@ export class LivroListComponent implements OnInit {
 
   ngOnInit(): void {
     this.termoPesquisa = "";
-    this.buscarDados();
+   // this.buscarDados();
   }
 
   buscarDados() {

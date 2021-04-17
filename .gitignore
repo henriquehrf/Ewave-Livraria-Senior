@@ -65,3 +65,5 @@ Thumbs.db
 /ToDo-UI/ewave-livraria-senior/node_modules
 /ToDo-UI/ewave-livraria-senior/.vscode
 *.gitkeep
+ToDo-UI/ewave-livraria-senior/dist/ewave-livraria-senior/runtime.js.map
+/ToDo-API/Livraria.ToDo/.vs/Livraria.ToDo/config/applicationhost.config

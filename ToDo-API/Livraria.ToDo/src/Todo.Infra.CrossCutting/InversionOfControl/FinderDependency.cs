@@ -9,6 +9,7 @@ namespace Todo.Infra.CrossCutting.InversionOfControl
 		public static void AddFinderDependency(this IServiceCollection services)
 		{
 			services.AddScoped<IUsuarioFinder, UsuarioFinder>();
+			services.AddScoped<IInstituicaoEnsinoFinder, InstituicaoEnsinoFinder>();
 			
 		}
 	}

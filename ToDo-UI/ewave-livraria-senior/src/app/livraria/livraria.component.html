@@ -1,18 +1,25 @@
 <todo-header (menuSelecionado)="receberValorMenu($event)"></todo-header>
 
-<todo-instituicao-ensino-list [hidden]="!(menuSelecionado == 'instituicao-ensino-list')"
-    (menuSelecionado)="receberValorMenu($event)">
-</todo-instituicao-ensino-list>
+<div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10">
+        <todo-instituicao-ensino-list [hidden]="!(menuSelecionado == 'instituicao-ensino-list')"
+            (menuSelecionado)="receberValorMenu($event)">
+        </todo-instituicao-ensino-list>
 
-<todo-usuario-list [hidden]="!(menuSelecionado == 'usuario-list')" (menuSelecionado)="receberValorMenu($event)">
-</todo-usuario-list>
+        <todo-usuario-list [hidden]="!(menuSelecionado == 'usuario-list')" (menuSelecionado)="receberValorMenu($event)">
+        </todo-usuario-list>
 
-<todo-livro-list [hidden]="!(menuSelecionado == 'livro-list')" (menuSelecionado)="receberValorMenu($event)">
-</todo-livro-list>
+        <todo-livro-list [hidden]="!(menuSelecionado == 'livro-list')" (menuSelecionado)="receberValorMenu($event)">
+        </todo-livro-list>
 
-<todo-emprestimo [hidden]="!(menuSelecionado == 'emprestimo')" (menuSelecionado)="receberValorMenu($event)">
-
-</todo-emprestimo>
+        <todo-emprestimo [hidden]="!(menuSelecionado == 'emprestimo')" (menuSelecionado)="receberValorMenu($event)">
+        </todo-emprestimo>
+    </div>
+    <div class="col-md-1">
+    </div>
+</div>
 
 <div class="m-2" [hidden]="!!(menuSelecionado)">
     <h4>Empréstimos ativos</h4>
@@ -20,8 +27,8 @@
         <div class="alert" [ngClass]="retornarStatusEmprestimo(emprestimo)" role="alert">
             <strong>Usuário:</strong> {{emprestimo.usuario.nome}} |
             <strong> Livro:</strong> {{emprestimo.livro.titulo}} |
-            <strong> Data Empréstimo:</strong> {{emprestimo.dataEmprestimo |  date:"dd/MM/yyyy"}} |
-            <strong> Data Prevista Devolução:</strong> {{emprestimo.dataPrevistaDevolucao |  date:"dd/MM/yyyy"}}
+            <strong> Data Empréstimo:</strong> {{emprestimo.dataEmprestimo | date:"dd/MM/yyyy"}} |
+            <strong> Data Prevista Devolução:</strong> {{emprestimo.dataPrevistaDevolucao | date:"dd/MM/yyyy"}}
         </div>
     </div>
 </div>

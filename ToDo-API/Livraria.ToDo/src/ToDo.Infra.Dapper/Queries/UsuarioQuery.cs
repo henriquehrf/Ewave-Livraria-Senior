@@ -10,7 +10,11 @@
 																u.Telefone,
 																u.Email,
 																ie.Id as IdInstituicaoEnsino,
-																ie.Nome as InstituicaoEnsinoDescricao
+																ie.Nome as InstituicaoEnsinoDescricao,
+																u.Endereco,
+																u.PerfilUsuario,
+																u.Login,
+																u.Ativo
 														FROM	Usuario u
 															INNER JOIN InstituicaoEnsino ie on
 																ie.Id = u.idInstituicaoEnsino

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Dropdown } from './dropdown';
 
@@ -16,7 +16,6 @@ export class DropdrowComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 
   onChange(valor) {
     this.valorSelecionado.emit(valor);

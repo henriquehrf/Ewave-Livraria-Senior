@@ -3,12 +3,13 @@ export interface Usuario {
     nome: string,
     cpf: string,
     endereco:string,
-    instituicaoEnsinoId: number,
+    idInstituicaoEnsino: number,
     instituicaoEnsinoDescricao: string,
     telefone: string,
     email: string,
     perfilUsuario: number,
     login: string,
     senha: string,
-    dataSuspencao: Date
+    dataSuspencao: Date,
+    ativo:boolean
 }
