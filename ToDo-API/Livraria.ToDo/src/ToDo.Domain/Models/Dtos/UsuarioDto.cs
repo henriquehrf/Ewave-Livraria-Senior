@@ -12,6 +12,6 @@
 		public string IdInstituicaoEnsino { get; set; }
 		public int PerfilUsuario { get; set; }
 		public string InstituicaoEnsinoDescricao { get; set; }
-		public string Ativo { get; set; }
+		public bool Ativo { get; set; }
 	}
 }

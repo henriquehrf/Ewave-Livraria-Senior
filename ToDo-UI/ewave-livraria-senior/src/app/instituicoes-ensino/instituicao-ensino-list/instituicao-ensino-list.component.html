@@ -1,35 +1,63 @@
 <div [hidden]="exibeFormularioNovo" class="container-fluid">
-    <div class="input-group m-4">
-        <button class="btn btn-primary mr-2" (click)="novo()">Novo</button>
-        <todo-search (textoPesquisado)="preencherTermoPesquisa($event)"></todo-search>
-        <button class="btn ml-2" (click)="buscarDados()"><i class="fa fa-search" aria-hidden="true"></i></button>
+    <br />
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <button class="btn btn-primary mr-2" (click)="novo()">Novo</button>
+        </div>
+        <div class="col-md-8">
+            <div class="form-group row">
+                <todo-search (textoPesquisado)="preencherTermoPesquisa($event)"
+                    (input)="buscarDados($event.target.value, 1)"></todo-search>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-bordered table-hover" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">CNPJ</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col">Endereço</th>
+                        <th scope="col">Ativo</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let instituicao of instituicoes | async">
+                        <td scope="row">{{instituicao.id}}</td>
+                        <td scope="row">{{instituicao.nome}}</td>
+                        <td scope="row">{{instituicao.cnpj}}</td>
+                        <td scope="row">{{instituicao.telefone}}</td>
+                        <td scope="row">{{instituicao.endereco}}</td>
+                        <td scope="row"><input class="check-input"  [checked]="instituicao.ativo"  type="checkbox" disabled></td>
+                        <td><button (click)=editar(instituicao) class="btn mr-2 btn btn-outline-primary"><i class="fa fa-pencil"
+                                    aria-hidden="true"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" *ngIf="(indicePagina > 1)">
+                        <a class="page-link" (click)="paginaAnterior()" >Anterior</a>
+                    </li>
+                    <li class="page-item" *ngIf="(instituicoes | async)?.length === 12">
+                        <a class="page-link" (click)="proximaPagina()" >Próxima</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 
-    <table class="table m-4">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">CNPJ</th>
-                <th scope="col">Telefone</th>
-                <th scope="col">Endereço</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let instituicao of instituicoes | async">
-                <td scope="row">{{instituicao.id}}</td>
-                <td scope="row">{{instituicao.nome}}</td>
-                <td scope="row">{{instituicao.cnpj}}</td>
-                <td scope="row">{{instituicao.telefone}}</td>
-                <td scope="row">{{instituicao.endereco}}</td>
-                <td><button (click)=editar(instituicao) class="btn mr-2"><i class="fa fa-pencil"
-                            aria-hidden="true"></i></button>
-                    <button class="btn" style="background-color: #F08080;" (click)="remover(instituicao)"><i class="fa fa-trash text-white" aria-hidden="true"></i></button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </div>
 
 <div [hidden]="!exibeFormularioNovo" class="container-fluid">

@@ -28,6 +28,7 @@ export class InstituicaoEnsinoFormComponent implements OnInit {
       endereco: new FormControl(),
       cnpj: new FormControl(),
       telefone: new FormControl(),
+      ativo: new FormControl()
     });
   }
 
@@ -42,7 +43,10 @@ export class InstituicaoEnsinoFormComponent implements OnInit {
           this.voltar();
         },
         err => {
-          alert(err.error.toString());
+          if (err.status === 400)
+            alert(err.error[0].Mensagem);
+          else
+            alert(err.message);
         }
       )
     } else {
@@ -54,14 +58,17 @@ export class InstituicaoEnsinoFormComponent implements OnInit {
           this.voltar();
         },
         err => {
-          alert(err.error.toString());
+          if (err.status === 400)
+            alert(err.error[0].Mensagem);
+          else
+            alert(err.message);
         }
       )
     }
   }
 
   limparFormulario() {
-    this.instituicao = { id: 0, nome: "", cnpj: "", telefone: "", endereco: "" };
+    this.instituicao = { id: 0, nome: "", cnpj: "", telefone: "", endereco: "", ativo: true };
   }
 
 

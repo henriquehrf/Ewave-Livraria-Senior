@@ -14,6 +14,7 @@ export class InstituicaoEnsinoListComponent implements OnInit {
 
   private instituicoes = new BehaviorSubject<any>(null);
   private instituicaoSelecionada: InstituicaoEnsino;
+  private indicePagina: number;
   private termoPesquisa: string;
 
   @Input() exibeFormularioNovo: boolean;
@@ -23,11 +24,12 @@ export class InstituicaoEnsinoListComponent implements OnInit {
 
   ngOnInit(): void {
     this.termoPesquisa = "";
-    this.buscarDados();
+    this.indicePagina = 1;
+    this.buscarDados("", 1);
   }
 
-  buscarDados() {
-    this.instituicaoEnsinoService.buscarInstituicaoEnsinoPorNome(this.termoPesquisa).pipe(debounceTime(500)).subscribe(
+  buscarDados(termoPesquisa: string, pagina: number) {
+    this.instituicaoEnsinoService.buscarInstituicaoEnsinoPorNome(termoPesquisa, pagina).pipe(debounceTime(500)).subscribe(
       (response) => {
         this.instituicoes.next(response);
       },
@@ -43,6 +45,7 @@ export class InstituicaoEnsinoListComponent implements OnInit {
 
   voltar() {
     this.exibeFormularioNovo = false;
+        this.buscarDados("", 1);
   }
 
   editar(instituicao) {
@@ -50,19 +53,17 @@ export class InstituicaoEnsinoListComponent implements OnInit {
     this.exibeFormularioNovo = true;
   }
 
-  remover(instituicao) {
-    this.instituicaoEnsinoService.removerInstituicaoEnsino(instituicao.id).subscribe(
-      () => {
-        alert("Removido com sucesso!");
-        this.buscarDados();
-      },
-      err => {
-        alert(err);
-      }
-    );
-  }
-
   preencherTermoPesquisa(valor) {
     this.termoPesquisa = valor;
+  }
+
+  proximaPagina() {
+    this.indicePagina++;
+    this.buscarDados(this.termoPesquisa, this.indicePagina);
+  }
+
+  paginaAnterior() {
+    this.indicePagina--;
+    this.buscarDados(this.termoPesquisa, this.indicePagina);
   }
 }

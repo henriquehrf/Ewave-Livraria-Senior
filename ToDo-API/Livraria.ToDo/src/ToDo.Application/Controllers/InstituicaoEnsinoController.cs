@@ -72,5 +72,14 @@ namespace ToDo.Application.Controllers
 
 			return StatusCode(StatusCodes.Status200OK, instituicoes);
 		}
+
+		[HttpGet("buscar-por-nome")]
+		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(InstituicaoEnsinoDto))]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
+		public async Task<IActionResult> BuscarUsuario([FromQuery] PaginacaoDto paginacao, [FromQuery] string nome)
+		{
+			var instituicoes = await _instituicaoEnsinoFinder.RetornarInstituicaoPorNome(paginacao, nome);
+			return StatusCode(StatusCodes.Status200OK, instituicoes);
+		}
 	}
 }

@@ -3,5 +3,6 @@ export interface InstituicaoEnsino {
     nome: string,
     endereco: string,
     cnpj: string,
-    telefone: string
+    telefone: string,
+    ativo:boolean
 }

@@ -28,14 +28,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let usuario of usuarios | async" (dblclick)=editar(usuario)>
+                    <tr *ngFor="let usuario of usuarios | async">
                         <td scope="row">{{usuario.id}}</td>
                         <td scope="row">{{usuario.nome}}</td>
                         <td scope="row">{{usuario.cpf}}</td>
                         <td scope="row">{{usuario.telefone}}</td>
                         <td scope="row">{{usuario.email}}</td>
                         <td scope="row">{{usuario.instituicaoEnsinoDescricao}}</td>
-                        <td scope="row"><input class="check-input"  [checked]="usuario.ativo === 'True'"  type="checkbox" disabled></td>
+                        <td scope="row"><input class="check-input"  [checked]="usuario.ativo"  type="checkbox" disabled></td>
                         <td><button (click)=editar(usuario) class="btn mr-2 btn btn-outline-primary"><i class="fa fa-pencil"
                                     aria-hidden="true"></i></button>
                         </td>

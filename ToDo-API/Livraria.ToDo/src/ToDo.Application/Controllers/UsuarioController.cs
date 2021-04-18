@@ -64,7 +64,7 @@ namespace ToDo.Application.Controllers
 		}
 
 		[HttpGet("buscar-por-nome")]
-		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PaginacaoDto))]
+		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UsuarioDto))]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
 		public async Task<IActionResult> BuscarUsuario([FromQuery] PaginacaoDto paginacao, [FromQuery] string nomeUsuario)
 		{
