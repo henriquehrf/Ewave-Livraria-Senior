@@ -14,7 +14,7 @@ export class LivroService {
     inserirLivro(livro: Livro) {
         return this.http
             .post(
-                API_URL + '/api/livro',
+                API_URL + '/api/livro/inserir',
                 livro,
                 { observe: 'response' },
             );
@@ -41,30 +41,16 @@ export class LivroService {
     alterarLivro(livro: Livro) {
         return this.http
             .put(
-                API_URL + '/api/livro',
+                API_URL + '/api/livro/alterar',
                 livro,
                 { observe: 'response' },
             );
     }
 
-    buscarLivroPoTitulo(titulo) {
+    buscarLivroPoTitulo(titulo: string, pagina: number) {
         return this.http
             .get(
-                API_URL + '/api/livro/' + titulo
-            );
-    }
-
-    retornarTodosLivro() {
-        return this.http
-            .get(
-                API_URL + '/api/livro'
-            );
-    }
-
-    removerLivro(id) {
-        return this.http
-            .delete(
-                API_URL + '/api/livro/' + id
+                API_URL + '/api/livro/buscar-por-titulo?titulo=' + titulo + '&TamanhoPagina=6&Pagina=' + pagina
             );
     }
 
@@ -72,12 +58,12 @@ export class LivroService {
         const formData = new FormData();
         formData.append('file', file);
 
-        return this.http.post(API_URL + '/api/imagem', formData);
+        return this.http.post(API_URL + '/api/imagem/salvar', formData);
 
     }
 
     removerCapa(guid) {
-        return this.http.delete(API_URL + '/api/imagem' + guid);
+        return this.http.delete(API_URL + '/api/imagem/remover?guid=' + guid);
     }
 }
 

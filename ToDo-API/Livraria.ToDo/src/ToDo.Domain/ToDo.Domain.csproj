@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Flunt" Version="1.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.5" />
   </ItemGroup>
 
 </Project>

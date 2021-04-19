@@ -1,12 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, ReactiveFormsModule, FormControl } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { LivroService } from '../livro/livro.service';
 import { UserService } from 'app/core/user/usuario.service';
 import { User } from 'app/core/user/usuario';
 import { Emprestimo } from 'app/emprestimos/emprestimo';
+import { Livro } from '../livro/livro';
 
 @Component({
   selector: 'todo-livro-list',
@@ -16,7 +17,10 @@ export class LivroListComponent implements OnInit {
 
   private livros = new BehaviorSubject<any>(null);
   user$: Observable<User>;
+  private termoPesquisa$ = new Subject<string>();
   private termoPesquisa: string;
+  private indicePagina: number;
+  private livroSelecionado: Livro;
 
   @Input() exibeFormularioNovo: boolean;
 
@@ -25,12 +29,21 @@ export class LivroListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.indicePagina = 1;
+    this.buscarDados("", 1);
     this.termoPesquisa = "";
-   // this.buscarDados();
+
+    this.termoPesquisa$.pipe(debounceTime(500),
+      distinctUntilChanged())
+      .subscribe((termo: string) => {
+        this.indicePagina = 1;
+        this.buscarDados(termo, this.indicePagina),
+          this.termoPesquisa = termo;
+      });
   }
 
-  buscarDados() {
-    this.livroService.buscarLivroPoTitulo(this.termoPesquisa).pipe(debounceTime(500)).subscribe(
+  buscarDados(termoPesquisa: string, pagina: number) {
+    this.livroService.buscarLivroPoTitulo(termoPesquisa, pagina).subscribe(
       (response) => {
         this.livros.next(response);
       },
@@ -45,17 +58,18 @@ export class LivroListComponent implements OnInit {
   }
 
   voltar() {
+    this.buscarDados("", 1);
     this.exibeFormularioNovo = false;
   }
 
   emprestar(livro) {
     this.user$.subscribe(
       (usuario) => {
-        let emprestimo  = {idLivro:livro.id, idUsuario:usuario.id};
+        let emprestimo = { idLivro: livro.id, idUsuario: usuario.id };
         this.livroService.emprestarLivro(emprestimo).subscribe(
           () => {
             alert("Emprestimo feito com sucesso!");
-            this.buscarDados();
+            this.buscarDados("", 1);
           },
           err => {
             alert(err.error.toString());
@@ -66,6 +80,21 @@ export class LivroListComponent implements OnInit {
   }
 
   preencherTermoPesquisa(valor) {
-    this.termoPesquisa = valor;
+    this.termoPesquisa$ = valor;
+  }
+
+  editar(livro) {
+    this.livroSelecionado = livro;
+    this.exibeFormularioNovo = true;
+  }
+
+  proximaPagina() {
+    this.indicePagina++;
+    this.buscarDados(this.termoPesquisa, this.indicePagina);
+  }
+
+  paginaAnterior() {
+    this.indicePagina--;
+    this.buscarDados(this.termoPesquisa, this.indicePagina);
   }
 }

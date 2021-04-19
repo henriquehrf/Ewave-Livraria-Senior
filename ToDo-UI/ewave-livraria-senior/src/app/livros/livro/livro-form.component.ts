@@ -26,8 +26,7 @@ export class LivroFormComponent implements OnInit {
       titulo: ['', Validators.required],
       genero: ['', Validators.required],
       sinopse: ['', Validators.required],
-      autor: ['', Validators.required],
-      guidCapa: ['', Validators.required],
+      autor: ['', Validators.required]
     });
   }
 
@@ -40,6 +39,7 @@ export class LivroFormComponent implements OnInit {
       sinopse: new FormControl(),
       disponibilidade: new FormControl(),
       guidCapa: new FormControl(),
+      ativo: new FormControl()
     });
   }
 
@@ -48,27 +48,55 @@ export class LivroFormComponent implements OnInit {
       return alert("Formulário inválido");
 
     let livro = this.livroForm.getRawValue();
-    livro.id = 0;
+    livro.id = this.livro.id;
     livro.disponibilidade = true;
+    if (this.livro.arquivoCapa) {
+      this.livroService.removerCapa(this.livro.guidCapa).subscribe(
+        () => {console.log("Imagem removida!")}
+      )
+      this.livroService.uploadCapa(this.file).subscribe(
+        (guid) => {
+          livro.guidCapa = guid['guid'];
+          this.salvarLivro(livro);
+        },
+        err => alert(err.error.toString())
+      )
+    } else {
+      this.salvarLivro(livro);
+    }
 
-    this.livroService.uploadCapa(this.file).subscribe(
-      (guid) => {
-        livro.guidCapa = guid['guid'];
-        this.salvarLivro(livro);
-      },
-      err => alert(err.error.toString())
-    )
+
 
   }
 
   salvarLivro(livro) {
-    this.livroService.inserirLivro(livro).subscribe(
-      () => {
-        alert("Salvo com sucesso!");
-        this.voltar();
-      },
-      err => alert(err.error.toString())
-    )
+    if (livro.id > 0) {
+      this.livroService.alterarLivro(livro).subscribe(
+        () => {
+          alert("Salvo com sucesso!");
+          this.voltar();
+        },
+        err => alert(err.error.toString())
+      )
+    } else {
+
+      this.livroService.inserirLivro(livro).subscribe(
+        () => {
+          alert("Salvo com sucesso!");
+          this.voltar();
+        },
+        err => alert(err.error.toString())
+      )
+    }
+  }
+
+  preVisualizarCapa(file) {
+    this.file = file;
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (_event) => {
+      this.livro.arquivoCapa = reader.result;
+    }
   }
 
   limparFormulario() {
@@ -80,8 +108,12 @@ export class LivroFormComponent implements OnInit {
       autor: "",
       sinopse: "",
       disponibilidade: true,
-      guidCapa: ""
+      guidCapa: "",
+      reservado: false,
+      ativo: true,
+      arquivoCapa: null
     };
+    this.file = null;
   }
 
   voltar() {

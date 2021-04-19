@@ -1,33 +1,59 @@
-<form class="m-4" [formGroup]="livroForm" *ngIf="livro">
-  <div class="form-group">
-    <label>Título:</label>
-    <input type="text" class="form-control" placeholder="Informe o título do livro" required formControlName="titulo"
-      [(ngModel)]="livro.titulo">
-    <small>*Campo obrigatório</small>
-  </div>
-  <div class="form-group">
-    <label>Autor:</label>
-    <input type="text" class="form-control" placeholder="Informe autor do livro" required formControlName="autor"
-      [(ngModel)]="livro.autor">
-    <small>*Campo obrigatório</small>
-  </div>
-  <div class="form-group">
-    <label>Genero:</label>
-    <input type="text" class="form-control" placeholder="Informe genero do livro" required formControlName="genero"
-      [(ngModel)]="livro.genero">
-    <small>*Campo obrigatório</small>
-  </div>
-  <div class="form-group">
-    <label>Capa: </label>
-    <input type="file" accept=".jpg" (change)="file = $event.target.files[0]"
-      placeholder="Defina uma imagem para a capa do livro" formControlName="guidCapa"  [(ngModel)]="livro.guidCapa">
-  </div>
-  <div class="form-group">
-    <label>Sinopse:</label>
-    <textarea class="form-control" placeholder="Descreva a sinopse do livro" formControlName="sinopse"
-      [(ngModel)]="livro.sinopse"></textarea>
-    <small>*Campo obrigatório</small>
-  </div>
-  <button type="submit" class="btn btn-primary mr-4" (click)="salvar()">Salvar</button>
-  <button class="btn btn" (click)="voltar()">Voltar</button>
-</form>
+<div class="row m-4">
+	<div class="col-md-3"></div>
+	<div class="col-md-6 border rounded">
+		<br />
+		<form [formGroup]="livroForm" *ngIf="livro">
+			<div class="form-group" style="height: 200px;">
+				<div style="height: 200px;width: 150px;" class="float-left">
+					<img *ngIf="livro.arquivoCapa" [src]="livro.arquivoCapa" height="200" class="img-thumbnail">
+					<img *ngIf="!livro.arquivoCapa"
+						src="https://localhost:44369/api/imagem/buscar?guid={{livro.guidCapa}}" height="200"
+						class="img-thumbnail" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div>
+					<label>Capa: </label>
+					<input type="file" accept="image/*" (change)="preVisualizarCapa($event.target.files[0])"
+						placeholder="Defina uma imagem para a capa do livro">
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Título:</label>
+				<input type="text" class="form-control" placeholder="Informe o título do livro" required
+					formControlName="titulo" [(ngModel)]="livro.titulo">
+				<small>*Campo obrigatório</small>
+			</div>
+			<div class="form-group">
+				<label>Autor:</label>
+				<input type="text" class="form-control" placeholder="Informe autor do livro" required
+					formControlName="autor" [(ngModel)]="livro.autor">
+				<small>*Campo obrigatório</small>
+			</div>
+			<div class="form-group">
+				<label>Genero:</label>
+				<input type="text" class="form-control" placeholder="Informe genero do livro" required
+					formControlName="genero" [(ngModel)]="livro.genero">
+				<small>*Campo obrigatório</small>
+			</div>
+			<div class="form-group">
+				<label>Sinopse:</label>
+				<textarea class="form-control" placeholder="Descreva a sinopse do livro" formControlName="sinopse"
+					[(ngModel)]="livro.sinopse"></textarea>
+				<small>*Campo obrigatório</small>
+			</div>
+			<div class="form-group">
+				<div class="form-check form-check-inline">
+					<label class="mr-2">Ativo: </label>
+					<input type="checkbox" class="form-check-input" placeholder="Marque se o livro estiver ativo"
+						[checked]="livro.ativo">
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary mr-4" (click)="salvar()">Salvar</button>
+			<button class="btn btn" (click)="voltar()">Voltar</button>
+		</form>
+		<br />
+	</div>
+	<div class="col-md-3"></div>
+</div>

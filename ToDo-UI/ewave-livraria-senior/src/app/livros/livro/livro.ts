@@ -5,5 +5,8 @@ export interface Livro {
     autor: string,
     sinopse: string,
     disponibilidade: boolean,
-    guidCapa: string
+    guidCapa: string,
+    reservado: boolean,
+    ativo: boolean,
+    arquivoCapa: string | ArrayBuffer | null
 }

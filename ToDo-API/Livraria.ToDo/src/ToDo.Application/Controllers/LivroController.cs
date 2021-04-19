@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Todo.Infra.CrossCutting.Filter;
+using ToDo.Domain.Interfaces.Finder;
 using ToDo.Domain.Interfaces.Service;
 using ToDo.Domain.Interfaces.UnitOfWork;
+using ToDo.Domain.Models.Dtos;
 using ToDo.Domain.Models.ViewModels;
 using ToDo.Infra.Shared.NotificationContext;
 using ToDo.Infra.Shared.ObjectMapper;
@@ -16,14 +19,17 @@ namespace ToDo.Application.Controllers
 	{
 		private readonly IUnitOfWork _unitOfWork;
 		private readonly ILivroService _livroService;
+		private readonly ILivroFinder _livroFinder;
 		private readonly NotificationContext _notificationContext;
 
 		public LivroController(IUnitOfWork unitOfWork, 
-								ILivroService livroService, 
+								ILivroService livroService,
+								 ILivroFinder livroFinder,
 								NotificationContext notificationContext)
 		{
 			_unitOfWork = unitOfWork;
 			_livroService = livroService;
+			_livroFinder = livroFinder;
 			_notificationContext = notificationContext;
 		}
 
@@ -55,6 +61,15 @@ namespace ToDo.Application.Controllers
 			_unitOfWork.Commit();
 			_unitOfWork.Dispose();
 			return StatusCode(StatusCodes.Status200OK);
+		}
+
+		[HttpGet("buscar-por-titulo")]
+		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(LivroDto))]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
+		public async Task<IActionResult> BuscarPorTitulo([FromQuery] PaginacaoDto paginacao, [FromQuery] string titulo)
+		{
+			var livros = await _livroFinder.RetornarLivroPorTitulo(paginacao, titulo);
+			return StatusCode(StatusCodes.Status200OK, livros);
 		}
 	}
 }

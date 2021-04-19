@@ -1,9 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
 import { InstituicaoEnsinoService } from '../instituicao-ensino/instituicao-ensino.service';
 import { InstituicaoEnsino } from '../instituicao-ensino/instituicao-ensino';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -28,6 +26,7 @@ export class InstituicaoEnsinoListComponent implements OnInit {
     this.buscarDados("", 1);
   }
 
+  
   buscarDados(termoPesquisa: string, pagina: number) {
     this.instituicaoEnsinoService.buscarInstituicaoEnsinoPorNome(termoPesquisa, pagina).pipe(debounceTime(500)).subscribe(
       (response) => {
@@ -67,3 +66,7 @@ export class InstituicaoEnsinoListComponent implements OnInit {
     this.buscarDados(this.termoPesquisa, this.indicePagina);
   }
 }
+function Debounce(arg0: number) {
+  throw new Error('Function not implemented.');
+}
+
