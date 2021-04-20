@@ -20,6 +20,9 @@ namespace ToDo.Service.Service
 		{
 			_notificationContext.AddNotifications(livro.Notifications);
 
+			livro.DefinirDisponibilidade(true);
+			livro.DefinirReservado(true);
+
 			if (_notificationContext.Valid)
 				return _livroRepository.Inserir(livro);
 

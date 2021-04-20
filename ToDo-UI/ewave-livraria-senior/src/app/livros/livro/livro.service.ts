@@ -23,7 +23,7 @@ export class LivroService {
     emprestarLivro(emprestimo) {
         return this.http
             .post(
-                API_URL + '/api/emprestimo',
+                API_URL + '/api/emprestimo/inserir',
                 emprestimo,
                 { observe: 'response' },
             );

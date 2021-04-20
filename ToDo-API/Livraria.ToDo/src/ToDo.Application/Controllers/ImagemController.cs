@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,7 @@ namespace ToDo.Application.Controllers
 		}
 
 		[HttpGet("buscar")]
+		[AllowAnonymous]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(VirtualFileResult))]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]

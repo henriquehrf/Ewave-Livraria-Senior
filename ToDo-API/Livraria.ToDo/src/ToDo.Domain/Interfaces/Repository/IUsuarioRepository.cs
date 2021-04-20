@@ -1,4 +1,7 @@
-﻿using ToDo.Domain.Entities;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
+using ToDo.Domain.Entities;
 
 namespace ToDo.Domain.Interfaces.Repository
 {
@@ -8,8 +11,6 @@ namespace ToDo.Domain.Interfaces.Repository
 		void Alterar(Usuario usuario);
 		Usuario BuscarPorId(int id);
 		Usuario UsuarioPorLogin(string login);
-		//UsuarioModel UsuarioPorId(int id);
-		//IEnumerable<UsuarioModel> Todos();
-		//IEnumerable<UsuarioModel> UsuarioPorNome(string nome);
+		IQueryable<Usuario> Filter(Expression<Func<Usuario, bool>> predicate);
 	}
 }

@@ -6,5 +6,6 @@ namespace ToDo.Domain.Interfaces.Repository
 	{
 		Livro Inserir(Livro livro);
 		void Alterar(Livro livro);
+		Livro BuscarPorId(int id);
 	}
 }

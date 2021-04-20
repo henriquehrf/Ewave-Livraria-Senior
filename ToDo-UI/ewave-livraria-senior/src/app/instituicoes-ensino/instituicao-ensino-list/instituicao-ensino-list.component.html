@@ -1,14 +1,11 @@
 <div [hidden]="exibeFormularioNovo" class="container-fluid">
     <br />
     <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-3">
-            <button class="btn btn-primary mr-2" (click)="novo()">Novo</button>
-        </div>
-        <div class="col-md-8">
-            <div class="form-group row">
-                <todo-search (textoPesquisado)="preencherTermoPesquisa($event)"
-                    (input)="buscarDados($event.target.value, 1)"></todo-search>
+        <div class="col-md-12 align-self-center">
+            <div class="form-group row div-search">
+                <button type="button" (click)="novo()" class="btn btn-primary rounded-circle mr-4"><i
+                        class="fa fa-plus"></i></button>
+                <todo-search (input)="termoPesquisa$.next($event.target.value)"></todo-search>
             </div>
         </div>
     </div>
@@ -34,9 +31,10 @@
                         <td scope="row">{{instituicao.cnpj}}</td>
                         <td scope="row">{{instituicao.telefone}}</td>
                         <td scope="row">{{instituicao.endereco}}</td>
-                        <td scope="row"><input class="check-input"  [checked]="instituicao.ativo"  type="checkbox" disabled></td>
-                        <td><button (click)=editar(instituicao) class="btn mr-2 btn btn-outline-primary"><i class="fa fa-pencil"
-                                    aria-hidden="true"></i></button>
+                        <td scope="row"><input class="check-input" [checked]="instituicao.ativo" type="checkbox"
+                                disabled></td>
+                        <td><button (click)=editar(instituicao) class="btn mr-2 btn btn-outline-primary"><i
+                                    class="fa fa-pencil" aria-hidden="true"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -48,10 +46,10 @@
             <nav>
                 <ul class="pagination justify-content-center">
                     <li class="page-item" *ngIf="(indicePagina > 1)">
-                        <a class="page-link" (click)="paginaAnterior()" >Anterior</a>
+                        <a class="page-link" (click)="paginaAnterior()">Anterior</a>
                     </li>
                     <li class="page-item" *ngIf="(instituicoes | async)?.length === 12">
-                        <a class="page-link" (click)="proximaPagina()" >Próxima</a>
+                        <a class="page-link" (click)="proximaPagina()">Próxima</a>
                     </li>
                 </ul>
             </nav>

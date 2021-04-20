@@ -21,10 +21,7 @@ namespace ToDo.Domain.ValueTypes
 
 		private bool Validar()
 		{
-			if (string.IsNullOrWhiteSpace(_valor))
-				return AdicionarNotificacao("Obrigatório informar um endereço.");
-
-			if (_valor.Length < 10)
+			if (!string.IsNullOrEmpty(_valor) && _valor.Length < 10)
 				return AdicionarNotificacao("Um endereço não pode ter menos que 10 caracteres.");
 
 			return true;

@@ -1,12 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { LivroService } from '../livro/livro.service';
 import { UserService } from 'app/core/user/usuario.service';
 import { User } from 'app/core/user/usuario';
-import { Emprestimo } from 'app/emprestimos/emprestimo';
 import { Livro } from '../livro/livro';
 
 @Component({
@@ -37,8 +34,8 @@ export class LivroListComponent implements OnInit {
       distinctUntilChanged())
       .subscribe((termo: string) => {
         this.indicePagina = 1;
-        this.buscarDados(termo, this.indicePagina),
-          this.termoPesquisa = termo;
+        this.buscarDados(termo, this.indicePagina)
+        this.termoPesquisa = termo;
       });
   }
 
@@ -91,6 +88,7 @@ export class LivroListComponent implements OnInit {
   proximaPagina() {
     this.indicePagina++;
     this.buscarDados(this.termoPesquisa, this.indicePagina);
+
   }
 
   paginaAnterior() {

@@ -21,10 +21,7 @@ namespace ToDo.Domain.ValueTypes
 
 		private bool Validar()
 		{
-			if (string.IsNullOrWhiteSpace(_valor))
-				return AdicionarNotificacao("Obrigatório informar um CNPJ.");
-
-			if (_valor.Length != 18)
+			if (!string.IsNullOrEmpty(_valor) && _valor.Length != 18)
 				return AdicionarNotificacao("Um CNPJ valido deve conter 18 caracteres.");
 
 			return true;

@@ -13,7 +13,7 @@ export class UsuarioService {
     inserirUsuario(usuario: Usuario) {
         return this.http
             .post(
-                API_URL + '/api/usuario/inserir',
+                API_URL + '/api/usuarios/inserir',
                 usuario,
                 { observe: 'response' },
             );
@@ -22,7 +22,7 @@ export class UsuarioService {
     alterarUsuario(usuario: Usuario) {
         return this.http
             .put(
-                API_URL + '/api/usuario/alterar',
+                API_URL + '/api/usuarios/alterar',
                 usuario,
                 { observe: 'response' },
             );
@@ -31,7 +31,7 @@ export class UsuarioService {
     buscarUsuarioPorNome(nome: string, pagina: number) {
         return this.http
             .get(
-                API_URL + '/api/usuario/buscar-por-nome?' + 'nomeUsuario=' + nome + '&pagina=' + pagina + '&tamanhoPagina=12'
+                API_URL + '/api/usuarios/buscar-por-nome?' + 'nomeUsuario=' + nome + '&pagina=' + pagina + '&tamanhoPagina=12'
             );
     }
 }

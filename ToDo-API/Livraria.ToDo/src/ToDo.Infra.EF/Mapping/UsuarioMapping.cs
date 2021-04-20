@@ -21,7 +21,6 @@ namespace ToDo.Infra.Data.EF.Mapping
 
 			builder.Property(prop => prop.Endereco)
 			   .HasConversion(prop => prop.ToString(), prop => prop)
-			   .IsRequired()
 			   .HasColumnName("Endereco")
 			   .HasColumnType("varchar(200)");
 
@@ -32,7 +31,6 @@ namespace ToDo.Infra.Data.EF.Mapping
 			  .HasColumnType("char(14)");
 
 			builder.Property(prop => prop.IdInstituicaoEnsino)
-			  .IsRequired()
 			  .HasColumnName("IdInstituicaoEnsino")
 			  .HasColumnType("int");
 

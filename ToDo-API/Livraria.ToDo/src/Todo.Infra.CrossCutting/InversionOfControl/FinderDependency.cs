@@ -11,6 +11,7 @@ namespace Todo.Infra.CrossCutting.InversionOfControl
 			services.AddScoped<IUsuarioFinder, UsuarioFinder>();
 			services.AddScoped<IInstituicaoEnsinoFinder, InstituicaoEnsinoFinder>();
 			services.AddScoped<ILivroFinder, LivroFinder>();
+			services.AddScoped<IEmprestimoFinder, EmprestimoFinder>();
 		}
 	}
 }

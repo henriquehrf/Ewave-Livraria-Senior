@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,7 +15,8 @@ using ToDo.Infra.Shared.ObjectMapper;
 namespace ToDo.Application.Controllers
 {
 	[ApiController]
-	[Route("api/[controller]/")]
+	[Authorize("Bearer")]
+	[Route("api/usuarios/")]
 	public class UsuarioController : Controller
 	{
 		private readonly IUnitOfWork _unitOfWork;
@@ -33,9 +35,11 @@ namespace ToDo.Application.Controllers
 			_notificationContext = notificationContext;
 		}
 
+		
 		[HttpPost("inserir")]
 		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(UsuarioViewModel))]
 		[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IList<NotificationResponse>))]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
 		public IActionResult InserirUsuario(UsuarioViewModel usuarioVm)
 		{
@@ -49,8 +53,9 @@ namespace ToDo.Application.Controllers
 		}
 
 		[HttpPut("alterar")]
-		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IList<NotificationResponse>))]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
 		public IActionResult Alterar(UsuarioViewModel usuarioVm)
 		{
@@ -60,11 +65,13 @@ namespace ToDo.Application.Controllers
 
 			_unitOfWork.Commit();
 			_unitOfWork.Dispose();
-			return StatusCode(StatusCodes.Status200OK);
+			return StatusCode(StatusCodes.Status204NoContent);
 		}
+
 
 		[HttpGet("buscar-por-nome")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UsuarioDto))]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
 		public async Task<IActionResult> BuscarUsuario([FromQuery] PaginacaoDto paginacao, [FromQuery] string nomeUsuario)
 		{

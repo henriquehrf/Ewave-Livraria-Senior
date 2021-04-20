@@ -6,6 +6,6 @@ namespace ToDo.Domain.Interfaces.Service
 	{
 		Emprestimo Inserir(Emprestimo emprestimo);
 
-		void DevolverEmprestimo(int idEmprestimo, int idUsuario);
+		void DevolverEmprestimo(int idEmprestimo);
 	}
 }

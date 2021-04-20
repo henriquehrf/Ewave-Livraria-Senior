@@ -26,16 +26,27 @@ namespace ToDo.Domain.Entities
 			GuidCapa = guidCapa;
 		}
 
-		public string Titulo { get; }
-		public string Genero { get; }
-		public string Autor { get; }
-		public string Sinopse { get; }
-		public Guid GuidCapa { get; }
-		public bool Disponivel { get; }
-		public bool Reservado { get; }
-		public bool Ativo { get; }
+		public string Titulo { get; private set; }
+		public string Genero { get; private set; }
+		public string Autor { get; private set; }
+		public string Sinopse { get; private set; }
+		public Guid GuidCapa { get; private set; }
+		public bool Disponivel { get; private set; }
+		public bool Reservado { get; private set; }
+		public bool Ativo { get; private set; }
+
+		public void DefinirDisponibilidade(bool disponibilidade)
+		{
+			Disponivel = disponibilidade;
+		}
+
+		public void DefinirReservado(bool reservado)
+		{
+			Reservado = reservado;
+		}
 
 		public virtual ICollection<Emprestimo> Emprestimos { get; } = new HashSet<Emprestimo>();
 		public virtual ICollection<Reserva> Reservas { get; } = new HashSet<Reserva>();
+
 	}
 }

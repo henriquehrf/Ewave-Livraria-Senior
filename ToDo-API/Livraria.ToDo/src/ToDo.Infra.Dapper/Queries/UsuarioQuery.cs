@@ -14,6 +14,7 @@
 																u.Endereco,
 																u.PerfilUsuario,
 																u.Login,
+																u.Senha,
 																u.Ativo
 														FROM	Usuario u
 															INNER JOIN InstituicaoEnsino ie on

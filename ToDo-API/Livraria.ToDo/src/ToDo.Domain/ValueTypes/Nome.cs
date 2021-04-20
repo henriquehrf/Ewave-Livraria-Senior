@@ -21,10 +21,7 @@ namespace ToDo.Domain.ValueTypes
 
 		private bool Validar()
 		{
-			if (string.IsNullOrWhiteSpace(_valor))
-				return AdicionarNotificacao("Obrigatório informar um nome.");
-
-			if (_valor.Length < 3)
+			if (!string.IsNullOrEmpty(_valor) && _valor.Length < 3)
 				return AdicionarNotificacao("Um nome não pode ter menos que 3 caracteres.");
 
 			return true;

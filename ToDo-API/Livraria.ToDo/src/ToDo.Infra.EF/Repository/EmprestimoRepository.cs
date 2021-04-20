@@ -1,4 +1,7 @@
-﻿using ToDo.Domain.Entities;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
+using ToDo.Domain.Entities;
 using ToDo.Domain.Interfaces.Repository;
 using ToDo.Infra.Data.EF.Context;
 
@@ -23,6 +26,11 @@ namespace ToDo.Infra.Data.EF.Repository
 		void IEmprestimoRepository.Alterar(Emprestimo emprestimo)
 		{
 			base.Alterar(emprestimo);
+		}
+
+		IQueryable<Emprestimo> IEmprestimoRepository.Filter(Expression<Func<Emprestimo, bool>> predicate)
+		{
+			return base.Filter(predicate);
 		}
 	}
 }

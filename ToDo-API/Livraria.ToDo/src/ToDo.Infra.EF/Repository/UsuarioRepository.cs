@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
 using ToDo.Domain.Entities;
 using ToDo.Domain.Interfaces.Repository;
 using ToDo.Infra.Data.EF.Context;
@@ -19,6 +21,11 @@ namespace ToDo.Infra.Data.EF.Repository
 		void IUsuarioRepository.Alterar(Usuario usuario)
 		{
 			base.Alterar(usuario);
+		}
+
+		IQueryable<Usuario> IUsuarioRepository.Filter(Expression<Func<Usuario, bool>> predicate)
+		{
+			return Filter(predicate);
 		}
 
 		Usuario IUsuarioRepository.Inserir(Usuario usuario)

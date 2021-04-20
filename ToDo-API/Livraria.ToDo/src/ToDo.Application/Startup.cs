@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using Todo.Infra.CrossCutting.Filter;
 using Todo.Infra.CrossCutting.InversionOfControl;
 using Todo.Infra.CrossCutting.Token;
@@ -24,7 +23,6 @@ namespace ToDo.Application
 		{
 
 			services.AddControllers().AddNewtonsoftJson();
-
 			services.AddRouting(options => options.LowercaseUrls = true);
 
 			services.AddMvc(config =>
@@ -39,10 +37,7 @@ namespace ToDo.Application
 			services.AddFinderDependency();
 			services.AddNotificationDependency();
 			services.ConfigureToken(Configuration);
-			services.AddSwaggerGen(c =>
-			{
-				c.SwaggerDoc("v1", new OpenApiInfo { Title = "ToDo.Application", Version = "v1" });
-			});
+			services.AddSwaggerDependency();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,13 +46,10 @@ namespace ToDo.Application
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
-				app.UseSwagger();
-				app.UseSwaggerUI(options =>
-				{
-					options.DefaultModelsExpandDepth(-1);
-					options.SwaggerEndpoint("/swagger/v1/swagger.json", "ToDo.Application v1");
-				});
+				
 			}
+
+			app.UseSwaggerDependency();
 
 			app.UseHttpsRedirection();
 			app.UseCors(builder => builder

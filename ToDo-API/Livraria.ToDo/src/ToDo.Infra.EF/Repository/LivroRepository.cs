@@ -19,5 +19,10 @@ namespace ToDo.Infra.Data.EF.Repository
 		{
 			base.Alterar(livro);
 		}
+
+		public Livro BuscarPorId(int id)
+		{
+			return ById(id);
+		}
 	}
 }
