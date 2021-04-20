@@ -15,7 +15,7 @@
         <div *ngFor="let livro of livros | async" class="col-md-4 p-2">
             <div class="col-12 m-4" class="border border-dark" style="border-radius: 25px; height: 100%;"
                 apDarkenOnHover>
-                <img src="https://localhost:44369/api/imagem/buscar?guid={{livro.guidCapa}}" class="rounded float-left"
+                <img src="https://localhost:44369/api/imagens?guid={{livro.guidCapa}}" class="rounded float-left"
                     style="max-width: 40%; margin: 10px;" />
                 <div class="text-center p-1">
                 </div>

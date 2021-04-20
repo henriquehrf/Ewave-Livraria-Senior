@@ -38,7 +38,7 @@ export class InstituicaoEnsinoService {
     retornarInstituicaoEnsinoDropdown() {
         return this.http
             .get(
-                API_URL + '/api/instituicoes-ensino/instituicao-ensino-dropdown'
+                API_URL + '/api/instituicoes-ensino/dropdown'
             );
     }
 }

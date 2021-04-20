@@ -8,7 +8,7 @@
         <div *ngFor="let emprestimo of emprestimos | async" class="col-md-4 p-2">
             <div class="col-12 m-4" class="border border-dark" style="border-radius: 25px; height: 100%;"
                 apDarkenOnHover>
-                <img src="https://localhost:44369/api/imagem/buscar?guid={{emprestimo.livro.guidCapa}}"
+                <img src="https://localhost:44369/api/imagens?guid={{emprestimo.livro.guidCapa}}"
                     class="rounded float-left" style="max-width: 40%; margin: 10px;" />
                 <div class="text-center p-1">
                 </div>
