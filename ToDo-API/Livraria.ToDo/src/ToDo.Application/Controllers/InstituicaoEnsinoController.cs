@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,7 +15,8 @@ using ToDo.Infra.Shared.ObjectMapper;
 namespace ToDo.Application.Controllers
 {
 	[ApiController]
-	[Route("api/[controller]/")]
+	[Authorize("Bearer")]
+	[Route("api/instituicoes-ensino/")]
 	public class InstituicaoEnsinoController : Controller
 	{
 		private readonly IUnitOfWork _unitOfWork;
@@ -36,8 +38,9 @@ namespace ToDo.Application.Controllers
 		[HttpPost("inserir")]
 		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(InstituicaoEnsinoViewModel))]
 		[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IList<NotificationResponse>))]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
-		public IActionResult InserirUsuario(InstituicaoEnsinoViewModel instituicaoVm)
+		public IActionResult Inserir(InstituicaoEnsinoViewModel instituicaoVm)
 		{
 			var instituicao = _instituicaoEnsinoService.Inserir(instituicaoVm.ToEntity());
 			if (_notificationContext.Notifications.Count > 0)
@@ -49,8 +52,9 @@ namespace ToDo.Application.Controllers
 		}
 
 		[HttpPut("alterar")]
-		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IList<NotificationResponse>))]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
 		public IActionResult Alterar(InstituicaoEnsinoViewModel instituicaoVm)
 		{
@@ -60,11 +64,13 @@ namespace ToDo.Application.Controllers
 
 			_unitOfWork.Commit();
 			_unitOfWork.Dispose();
-			return StatusCode(StatusCodes.Status200OK);
+			return StatusCode(StatusCodes.Status204NoContent);
 		}
 
-		[HttpGet("instituicao-ensino-dropdown")]
+		
+		[HttpGet("dropdown")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type =typeof(DropdownDto))]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
 		public async Task<IActionResult> InstituicaoEnsinoDropDown()
 		{
@@ -76,7 +82,8 @@ namespace ToDo.Application.Controllers
 		[HttpGet("buscar-por-nome")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(InstituicaoEnsinoDto))]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
-		public async Task<IActionResult> BuscarUsuario([FromQuery] PaginacaoDto paginacao, [FromQuery] string nome)
+		public async Task<IActionResult> BuscarPorNome([FromQuery] PaginacaoDto paginacao,
+														[FromQuery] string nome)
 		{
 			var instituicoes = await _instituicaoEnsinoFinder.RetornarInstituicaoPorNome(paginacao, nome);
 			return StatusCode(StatusCodes.Status200OK, instituicoes);

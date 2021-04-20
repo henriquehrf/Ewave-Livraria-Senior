@@ -21,9 +21,13 @@ namespace Todo.Infra.CrossCutting.Filter
 						new OpenApiSecurityScheme {
 							Reference = new OpenApiReference {
 								Type = ReferenceType.SecurityScheme,
-								Id = "bearer"
-							}
-						}, new string[] { }
+								Id = "Bearer"
+							},
+							Scheme="oauth2",
+							Name="Bearer",
+							In = ParameterLocation.Header
+
+						}, new List<string>()
 					}
 				}
 			};

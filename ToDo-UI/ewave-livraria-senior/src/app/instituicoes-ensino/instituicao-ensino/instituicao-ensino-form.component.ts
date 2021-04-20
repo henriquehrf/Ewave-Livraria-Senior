@@ -36,7 +36,6 @@ export class InstituicaoEnsinoFormComponent implements OnInit {
     const ehAlteracao = (this.instituicao.id > 0);
     if (!ehAlteracao) {
       const instituicao = this.instituicaoForm.value;
-      instituicao.id = 0;
       this.instituicaoEnsinoService.inserirInstituicaoEnsino(instituicao).subscribe(
         () => {
           alert("Salvo com Sucesso!!!")

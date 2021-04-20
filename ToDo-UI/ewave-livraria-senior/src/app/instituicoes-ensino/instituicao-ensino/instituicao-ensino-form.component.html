@@ -31,7 +31,7 @@
                 <div class="form-check form-check-inline">
                     <label class="mr-2">Ativo</label>
                     <input type="checkbox" class="form-check-input" placeholder="Marque se o instituição estiver ativo"
-                        formControlName="ativo" [checked]="instituicao.ativo">
+                        formControlName="ativo" [checked]="instituicao.ativo" [(ngModel)]=instituicao.ativo>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary mr-4" (click)="salvar()">Salvar</button>

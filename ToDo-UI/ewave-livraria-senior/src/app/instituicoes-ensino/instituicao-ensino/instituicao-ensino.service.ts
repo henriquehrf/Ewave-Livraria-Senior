@@ -13,7 +13,7 @@ export class InstituicaoEnsinoService {
     inserirInstituicaoEnsino(instituicao: InstituicaoEnsino) {
         return this.http
             .post(
-                API_URL + '/api/instituicaoensino/inserir',
+                API_URL + '/api/instituicoes-ensino/inserir',
                 instituicao,
                 { observe: 'response' },
             );
@@ -22,7 +22,7 @@ export class InstituicaoEnsinoService {
     alterarInstituicaoEnsino(instituicao: InstituicaoEnsino) {
         return this.http
             .put(
-                API_URL + '/api/instituicaoensino/alterar',
+                API_URL + '/api/instituicoes-ensino/alterar',
                 instituicao,
                 { observe: 'response' },
             );
@@ -31,14 +31,14 @@ export class InstituicaoEnsinoService {
     buscarInstituicaoEnsinoPorNome(nome: string, pagina:number) {
         return this.http
             .get(
-                API_URL + '/api/instituicaoensino/buscar-por-nome?nome=' + nome + '&pagina=' + pagina + '&tamanhoPagina=12'
+                API_URL + '/api/instituicoes-ensino/buscar-por-nome?nome=' + nome + '&pagina=' + pagina + '&tamanhoPagina=12'
             );
     }
 
     retornarInstituicaoEnsinoDropdown() {
         return this.http
             .get(
-                API_URL + '/api/instituicaoensino/instituicao-ensino-dropdown'
+                API_URL + '/api/instituicoes-ensino/instituicao-ensino-dropdown'
             );
     }
 }

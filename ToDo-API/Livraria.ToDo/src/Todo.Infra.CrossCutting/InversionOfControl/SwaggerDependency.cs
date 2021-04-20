@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using System.Collections.Generic;
 using Todo.Infra.CrossCutting.Filter;
 
 namespace Todo.Infra.CrossCutting.InversionOfControl
@@ -22,6 +23,7 @@ namespace Todo.Infra.CrossCutting.InversionOfControl
 					In = ParameterLocation.Header,
 					Description = "JWT Authorization header using the Bearer scheme."
 				});
+
 				c.OperationFilter<SecurityRequirementsOperationFilter>();
 
 			});
