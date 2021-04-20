@@ -39,7 +39,6 @@ namespace ToDo.Application.Controllers
 		[HttpPost("inserir")]
 		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(UsuarioViewModel))]
 		[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IList<NotificationResponse>))]
-		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
 		public IActionResult InserirUsuario(UsuarioViewModel usuarioVm)
 		{
@@ -55,7 +54,6 @@ namespace ToDo.Application.Controllers
 		[HttpPut("alterar")]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IList<NotificationResponse>))]
-		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
 		public IActionResult Alterar(UsuarioViewModel usuarioVm)
 		{
@@ -71,7 +69,6 @@ namespace ToDo.Application.Controllers
 
 		[HttpGet("buscar-por-nome")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UsuarioDto))]
-		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
 		public async Task<IActionResult> BuscarUsuario([FromQuery] PaginacaoDto paginacao, [FromQuery] string nomeUsuario)
 		{

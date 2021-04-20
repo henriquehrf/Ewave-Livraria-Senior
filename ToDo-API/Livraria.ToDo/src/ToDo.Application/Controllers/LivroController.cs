@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,7 +15,8 @@ using ToDo.Infra.Shared.ObjectMapper;
 namespace ToDo.Application.Controllers
 {
 	[ApiController]
-	[Route("api/[controller]/")]
+	[Authorize("Bearer")]
+	[Route("api/livros/")]
 	public class LivroController : Controller
 	{
 		private readonly IUnitOfWork _unitOfWork;
@@ -37,7 +39,7 @@ namespace ToDo.Application.Controllers
 		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(LivroViewModel))]
 		[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IList<NotificationResponse>))]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
-		public IActionResult InserirUsuario(LivroViewModel livroVm)
+		public IActionResult Inserir(LivroViewModel livroVm)
 		{
 			var livro = _livroService.Inserir(livroVm.ToEntity());
 			if (_notificationContext.Notifications.Count > 0)
@@ -49,7 +51,7 @@ namespace ToDo.Application.Controllers
 		}
 
 		[HttpPut("alterar")]
-		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IList<NotificationResponse>))]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
 		public IActionResult Alterar(LivroViewModel livroVm)
@@ -60,7 +62,7 @@ namespace ToDo.Application.Controllers
 
 			_unitOfWork.Commit();
 			_unitOfWork.Dispose();
-			return StatusCode(StatusCodes.Status200OK);
+			return StatusCode(StatusCodes.Status204NoContent);
 		}
 
 		[HttpGet("buscar-por-titulo")]

@@ -27,7 +27,6 @@ namespace ToDo.Application.Controllers
 		
 		[HttpPost("salvar")]
 		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Guid))]
-		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
 		public async Task<IActionResult> SalvarImagem([FromForm] IFormFile file)
 		{

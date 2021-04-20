@@ -37,16 +37,6 @@ namespace ToDo.Infra.Data.EF.Mapping
 			   .HasColumnName("GuidCapa")
 			   .HasColumnType("uniqueidentifier");
 
-			builder.Property(prop => prop.Disponivel)
-			   .IsRequired()
-			   .HasColumnName("Disponibilidade")
-			   .HasColumnType("bit");
-
-			builder.Property(prop => prop.Reservado)
-			   .IsRequired()
-			   .HasColumnName("Reservado")
-			   .HasColumnType("bit");
-
 			builder.Property(prop => prop.Ativo)
 			   .IsRequired()
 			   .HasColumnName("Ativo")

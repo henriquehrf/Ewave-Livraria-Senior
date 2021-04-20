@@ -6,7 +6,7 @@
 			<div class="form-group" style="height: 200px;">
 				<div style="height: 200px;width: 150px;" class="float-left">
 					<img *ngIf="livro.arquivoCapa" [src]="livro.arquivoCapa" height="200" class="img-thumbnail">
-					<img *ngIf="!livro.arquivoCapa"
+					<img *ngIf="(!livro.arquivoCapa)"
 						src="https://localhost:44369/api/imagens?guid={{livro.guidCapa}}" height="200"
 						class="img-thumbnail" />
 				</div>
@@ -46,7 +46,7 @@
 				<div class="form-check form-check-inline">
 					<label class="mr-2">Ativo: </label>
 					<input type="checkbox" class="form-check-input" placeholder="Marque se o livro estiver ativo"
-						[checked]="livro.ativo">
+					formControlName="ativo" [checked]="livro.ativo" [(ngModel)]=livro.ativo>
 				</div>
 			</div>
 

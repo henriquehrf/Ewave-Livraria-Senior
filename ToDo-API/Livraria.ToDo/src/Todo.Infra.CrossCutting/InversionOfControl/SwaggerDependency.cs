@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using System.Collections.Generic;
+using System;
 using Todo.Infra.CrossCutting.Filter;
 
 namespace Todo.Infra.CrossCutting.InversionOfControl
@@ -25,7 +26,6 @@ namespace Todo.Infra.CrossCutting.InversionOfControl
 				});
 
 				c.OperationFilter<SecurityRequirementsOperationFilter>();
-
 			});
 		}
 

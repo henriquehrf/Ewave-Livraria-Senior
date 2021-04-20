@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ using ToDo.Infra.Shared.ObjectMapper;
 namespace ToDo.Application.Controllers
 {
 	[ApiController]
+	[Authorize("Bearer")]
 	[Route("api/[controller]/")]
 	public class EmprestimoController : Controller
 	{

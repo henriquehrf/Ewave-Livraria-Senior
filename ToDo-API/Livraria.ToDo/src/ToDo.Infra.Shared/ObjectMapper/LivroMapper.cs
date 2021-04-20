@@ -12,8 +12,6 @@ namespace ToDo.Infra.Shared.ObjectMapper
 																			genero: objModel.Genero,
 																			autor: objModel.Autor,
 																			sinopse: objModel.Sinopse,
-																			disponivel: objModel.Disponivel,
-																			reservado: objModel.Reservado,
 																			ativo: objModel.Ativo,
 																			guidCapa: objModel.GuidCapa);
 
@@ -23,8 +21,6 @@ namespace ToDo.Infra.Shared.ObjectMapper
 			Titulo = objRepository.Titulo,
 			Genero = objRepository.Genero,
 			Autor = objRepository.Sinopse,
-			Disponivel = objRepository.Disponivel,
-			Reservado = objRepository.Reservado,
 			Sinopse = objRepository.Sinopse,
 			Ativo = objRepository.Ativo,
 			GuidCapa = objRepository.GuidCapa

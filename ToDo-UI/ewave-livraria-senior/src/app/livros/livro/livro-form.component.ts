@@ -22,12 +22,6 @@ export class LivroFormComponent implements OnInit {
   ngOnInit(): void {
     this.novoFormulario();
     this.limparFormulario();
-    this.livroForm = this.formBuilder.group({
-      titulo: ['', Validators.required],
-      genero: ['', Validators.required],
-      sinopse: ['', Validators.required],
-      autor: ['', Validators.required]
-    });
   }
 
   novoFormulario() {
@@ -39,7 +33,7 @@ export class LivroFormComponent implements OnInit {
       sinopse: new FormControl(),
       disponibilidade: new FormControl(),
       guidCapa: new FormControl(),
-      ativo: new FormControl()
+      ativo: new FormControl(),
     });
   }
 
@@ -48,11 +42,11 @@ export class LivroFormComponent implements OnInit {
       return alert("Formulário inválido");
 
     let livro = this.livroForm.getRawValue();
+    livro.guidCapa = this.livro.guidCapa;
     livro.id = this.livro.id;
-    livro.disponibilidade = true;
     if (this.livro.arquivoCapa) {
       this.livroService.removerCapa(this.livro.guidCapa).subscribe(
-        () => {console.log("Imagem removida!")}
+        () => { console.log("Imagem removida!") }
       )
       this.livroService.uploadCapa(this.file).subscribe(
         (guid) => {
@@ -100,7 +94,6 @@ export class LivroFormComponent implements OnInit {
   }
 
   limparFormulario() {
-    this.livroForm.reset();
     this.livro = {
       id: 0,
       titulo: "",

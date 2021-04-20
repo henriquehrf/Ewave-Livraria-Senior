@@ -14,23 +14,23 @@ namespace Todo.Infra.CrossCutting.Filter
 				!(context.MethodInfo.DeclaringType?.GetCustomAttributes(true).Any(x => x is AllowAnonymousAttribute) ?? false))
 			{
 				operation.Security = new List<OpenApiSecurityRequirement>
-			{
-				new OpenApiSecurityRequirement
 				{
+					new OpenApiSecurityRequirement
 					{
-						new OpenApiSecurityScheme {
-							Reference = new OpenApiReference {
-								Type = ReferenceType.SecurityScheme,
-								Id = "Bearer"
-							},
-							Scheme="oauth2",
-							Name="Bearer",
-							In = ParameterLocation.Header
+						{
+							new OpenApiSecurityScheme {
+								Reference = new OpenApiReference {
+									Type = ReferenceType.SecurityScheme,
+									Id = "Bearer"
+								},
+								Scheme="oauth2",
+								Name="Bearer",
+								In = ParameterLocation.Header
 
-						}, new List<string>()
+							}, new List<string>()
+						}
 					}
-				}
-			};
+				};
 			}
 		}
 	}
