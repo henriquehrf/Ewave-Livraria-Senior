@@ -29,10 +29,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, build
-      run: |
-        npm ci 
-        npm run build 
-        working-directory: ./ToDo-UI/ewave-livraria-senior/
+    - name: npm install
+      run:  npm ci 
+      working-directory: ./ToDo-UI/ewave-livraria-senior/
+    - name: npm build
+      run:  npm run build
+      working-directory: ./ToDo-UI/ewave-livraria-senior/
       env:
         CI: true
