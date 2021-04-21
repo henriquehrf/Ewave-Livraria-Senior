@@ -5,7 +5,7 @@ namespace ToDo.Service.Test.Mocks
 {
 	public class MockInstituicaoEnsinoRepository : BaseMock<InstituicaoEnsino, MockInstituicaoEnsinoRepository>
 	{
-		private readonly static IList<InstituicaoEnsino> _instituicoesEnsino = new List<InstituicaoEnsino>()
+		private readonly IList<InstituicaoEnsino> _instituicoesEnsino = new List<InstituicaoEnsino>()
 		{
 			new InstituicaoEnsino(id: 1,
 								  nome: "UFMT",

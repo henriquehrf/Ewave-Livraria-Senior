@@ -13,7 +13,7 @@ using Xunit;
 
 namespace ToDo.Service.Test
 {
-	public class SolicitarEmprestimoTest
+	public class SolicitarEmprestimoTest : IDisposable
 	{
 		private readonly Mock<IUsuarioRepository> _usuarioRepository;
 		private readonly Mock<ILivroRepository> _livroRepository;
@@ -144,6 +144,13 @@ namespace ToDo.Service.Test
 			};
 			#endregion
 
+		}
+
+		public void Dispose()
+		{
+			MockUsuarioRepository.Reset();
+			MockLivroRepository.Reset();
+			MockEmprestimoRepository.Reset();
 		}
 	}
 }

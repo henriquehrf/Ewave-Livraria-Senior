@@ -7,7 +7,7 @@ namespace ToDo.Service.Test.Mocks
 	public class MockEmprestimoRepository : BaseMock<Emprestimo, MockEmprestimoRepository>
 	{
 
-		private readonly static IList<Emprestimo> _emprestimos = new List<Emprestimo>()
+		private readonly IList<Emprestimo> _emprestimos = new List<Emprestimo>()
 		{
 			new Emprestimo(id:1,
 							idUsuario: 1,

@@ -6,7 +6,7 @@ namespace ToDo.Service.Test.Mocks
 {
 	public class MockLivroRepository : BaseMock<Livro, MockLivroRepository>
 	{
-		private readonly static IList<Livro> _livros = new List<Livro>()
+		private readonly IList<Livro> _livros = new List<Livro>()
 		{
 			new Livro(id:1,
 					  titulo: "Design Patterns com C#",

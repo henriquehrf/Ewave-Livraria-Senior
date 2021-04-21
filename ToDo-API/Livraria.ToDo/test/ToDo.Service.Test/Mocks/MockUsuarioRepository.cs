@@ -7,7 +7,7 @@ namespace ToDo.Service.Test.Mocks
 {
 	public class MockUsuarioRepository : BaseMock<Usuario, MockUsuarioRepository>
 	{
-		private readonly static IList<Usuario> _usuarios = new List<Usuario>()
+		private readonly IList<Usuario> _usuarios = new List<Usuario>()
 		{
 			new Usuario(id:1,
 						nome:"Henrique R. Firmino",

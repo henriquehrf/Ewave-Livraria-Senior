@@ -21,6 +21,11 @@ namespace ToDo.Service.Test.Mocks
 			}
 		}
 
+		public static void Reset()
+		{
+			_massaDeDadosSaida = null;
+		}
+
 		public static T ObterPorId(int id) => MassaDeDadosSaida.SingleOrDefault(p => (p as BaseEntity<int>).Id.Equals(id));
 
 		public static IQueryable<T> Filter(Expression<Func<T, bool>> predicate) => MassaDeDadosSaida.AsQueryable().Where(predicate);
