@@ -55,10 +55,7 @@ export class UsuarioFormComponent implements OnInit {
           this.voltar();
         },
         err => {
-          if (err.status === 400)
-            alert(err.error[0].Mensagem);
-          else
-            alert(err.message);
+          alert(err.error[0] != null ? err.error[0].Mensagem : err.error.mensagem);
         }
       )
     } else {
@@ -72,10 +69,7 @@ export class UsuarioFormComponent implements OnInit {
           this.voltar();
         },
         err => {
-          if (err.status === 400)
-            alert(err.error[0].Mensagem);
-          else
-            alert(err.message);
+          alert(err.error[0] != null ? err.error[0].Mensagem : err.error.mensagem);
         }
       )
     }

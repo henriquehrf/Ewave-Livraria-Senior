@@ -5,10 +5,13 @@ import { LivroService } from '../livro/livro.service';
 import { UserService } from 'app/core/user/usuario.service';
 import { User } from 'app/core/user/usuario';
 import { Livro } from '../livro/livro';
+import { EmprestimoService } from 'app/emprestimos/emprestimo.service';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'todo-livro-list',
-  templateUrl: './livro-list.component.html'
+  templateUrl: './livro-list.component.html',
+  styleUrls: ['./livro-list.component.css']
 })
 export class LivroListComponent implements OnInit {
 
@@ -17,11 +20,15 @@ export class LivroListComponent implements OnInit {
   private termoPesquisa$ = new Subject<string>();
   private termoPesquisa: string;
   private indicePagina: number;
-  private livroSelecionado: Livro;
+  livroSelecionado: Livro;
+  tamanhoPaginaPadrao:number;
+  endPointImagem:string;
 
   @Input() exibeFormularioNovo: boolean;
 
-  constructor(private livroService: LivroService, private userService: UserService) {
+  constructor(private livroService: LivroService,
+             private userService: UserService,
+             private emprestimoService: EmprestimoService) {
     this.user$ = userService.getUser();
   }
 
@@ -29,6 +36,8 @@ export class LivroListComponent implements OnInit {
     this.indicePagina = 1;
     this.buscarDados("", 1);
     this.termoPesquisa = "";
+    this.tamanhoPaginaPadrao = environment.tamanho_pagina_reduzida;
+    this.endPointImagem = environment.endPointImagem;
 
     this.termoPesquisa$.pipe(debounceTime(500),
       distinctUntilChanged())
@@ -45,7 +54,7 @@ export class LivroListComponent implements OnInit {
         this.livros.next(response);
       },
       err => {
-        alert(err);
+        alert(err.error[0] != null ? err.error[0].Mensagem : err.error.mensagem);
       }
     )
   }
@@ -63,9 +72,9 @@ export class LivroListComponent implements OnInit {
     this.user$.subscribe(
       (usuario) => {
         let emprestimo = { idLivro: livro.id, idUsuario: usuario.id };
-        this.livroService.emprestarLivro(emprestimo).subscribe(
+        this.emprestimoService.emprestarLivro(emprestimo).subscribe(
           () => {
-            alert("Emprestimo feito com sucesso!");
+            alert("Empréstimo feito com sucesso!");
             this.buscarDados(this.termoPesquisa, 1);
           },
           err => {

@@ -2,7 +2,7 @@
     <br />
     <div class="row">
         <div class="col-md-12 align-self-center">
-            <div class="form-group row div-search">
+            <div class="form-group row div-centralize">
                 <button type="button" (click)="novo()" class="btn btn-primary rounded-circle mr-4"><i
                         class="fa fa-plus"></i></button>
                 <todo-search (input)="termoPesquisa$.next($event.target.value)"></todo-search>
@@ -48,7 +48,7 @@
                     <li class="page-item" *ngIf="(indicePagina > 1)">
                         <a class="page-link" (click)="paginaAnterior()">Anterior</a>
                     </li>
-                    <li class="page-item" *ngIf="(instituicoes | async)?.length === 12">
+                    <li class="page-item" *ngIf="(instituicoes | async)?.length === tamanhoPaginaPadrao">
                         <a class="page-link" (click)="proximaPagina()">Próxima</a>
                     </li>
                 </ul>

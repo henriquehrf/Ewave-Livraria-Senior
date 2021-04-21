@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { UserService } from 'app/core/user/usuario.service';
 import { User } from 'app/core/user/usuario';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'todo-instituicao-ensino-list',
@@ -13,8 +14,9 @@ import { User } from 'app/core/user/usuario';
 export class InstituicaoEnsinoListComponent implements OnInit {
 
   user$: Observable<User>;
+  instituicaoSelecionada: InstituicaoEnsino;
+  tamanhoPaginaPadrao: number;
   private instituicoes = new BehaviorSubject<any>(null);
-  private instituicaoSelecionada: InstituicaoEnsino;
   private indicePagina: number;
   private termoPesquisa: string;
   private termoPesquisa$ = new Subject<string>();
@@ -28,6 +30,7 @@ export class InstituicaoEnsinoListComponent implements OnInit {
   ngOnInit(): void {
     this.termoPesquisa = "";
     this.indicePagina = 1;
+    this.tamanhoPaginaPadrao = environment.tamanho_pagina_padrao;
 
     this.user$.subscribe(
       (usuario) => {

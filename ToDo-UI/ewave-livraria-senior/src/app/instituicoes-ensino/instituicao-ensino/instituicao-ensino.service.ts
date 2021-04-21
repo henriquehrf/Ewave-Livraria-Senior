@@ -4,6 +4,7 @@ import { environment } from '@env/environment';
 import { InstituicaoEnsino } from './instituicao-ensino'
 
 const API_URL = environment.todo_api;
+const TAMANHO_PAGINA_PADRAO = environment.tamanho_pagina_padrao
 
 @Injectable({ providedIn: 'root' })
 export class InstituicaoEnsinoService {
@@ -31,7 +32,7 @@ export class InstituicaoEnsinoService {
     buscarInstituicaoEnsinoPorNome(nome: string, pagina:number) {
         return this.http
             .get(
-                API_URL + '/api/instituicoes-ensino/buscar-por-nome?nome=' + nome + '&pagina=' + pagina + '&tamanhoPagina=12'
+                API_URL + '/api/instituicoes-ensino/buscar-por-nome?nome=' + nome + '&pagina=' + pagina + '&tamanhoPagina='+TAMANHO_PAGINA_PADRAO
             );
     }
 

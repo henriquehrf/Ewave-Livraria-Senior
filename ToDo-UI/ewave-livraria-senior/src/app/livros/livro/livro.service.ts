@@ -5,6 +5,7 @@ import { Livro } from './livro';
 import { Emprestimo } from '../../emprestimos/emprestimo';
 
 const API_URL = environment.todo_api;
+const TAMANHO_PAGINA_PADRAO = environment.tamanho_pagina_reduzida
 
 @Injectable({ providedIn: 'root' })
 export class LivroService {
@@ -16,24 +17,6 @@ export class LivroService {
             .post(
                 API_URL + '/api/livros/inserir',
                 livro,
-                { observe: 'response' },
-            );
-    }
-
-    emprestarLivro(emprestimo) {
-        return this.http
-            .post(
-                API_URL + '/api/emprestimos/inserir',
-                emprestimo,
-                { observe: 'response' },
-            );
-    }
-
-    devolverLivro(emprestimo: Emprestimo) {
-        return this.http
-            .put(
-                API_URL + '/api/emprestimos',
-                emprestimo,
                 { observe: 'response' },
             );
     }
@@ -50,7 +33,7 @@ export class LivroService {
     buscarLivroPoTitulo(titulo: string, pagina: number) {
         return this.http
             .get(
-                API_URL + '/api/livros/buscar-por-titulo?titulo=' + titulo + '&TamanhoPagina=6&Pagina=' + pagina
+                API_URL + '/api/livros/buscar-por-titulo?titulo=' + titulo + '&TamanhoPagina='+ TAMANHO_PAGINA_PADRAO +'&Pagina=' + pagina
             );
     }
 

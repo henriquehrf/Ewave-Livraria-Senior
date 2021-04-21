@@ -5,6 +5,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Usuario } from '../usuario/usuario';
 import { User } from 'app/core/user/usuario';
 import { UserService } from 'app/core/user/usuario.service';
+import { environment } from '@env/environment';
 
 @Component({
     selector: 'todo-usuario-list',
@@ -12,16 +13,22 @@ import { UserService } from 'app/core/user/usuario.service';
 })
 export class UsuarioListComponent implements OnInit {
 
-    private usuarios = new BehaviorSubject<any>(null);
     user$: Observable<User>;
+
+
+    private usuarios = new BehaviorSubject<any>(null);
     private usuarioSelecionado: Usuario
     private termoPesquisa$ = new Subject<string>();
     private termoPesquisa: string;
     private indicePagina: number;
+    private tamanhoPaginaPadrao: number;
+
+
 
     @Input() exibeFormularioNovo: boolean;
 
-    constructor(private usuarioService: UsuarioService, userService: UserService) {
+    constructor(private usuarioService: UsuarioService,
+        userService: UserService) {
         this.user$ = userService.getUser();
 
     }
@@ -29,6 +36,7 @@ export class UsuarioListComponent implements OnInit {
     ngOnInit(): void {
         this.termoPesquisa = "";
         this.indicePagina = 1;
+        this.tamanhoPaginaPadrao = environment.tamanho_pagina_padrao;
 
         this.user$.subscribe(
             (usuario) => {
@@ -55,7 +63,7 @@ export class UsuarioListComponent implements OnInit {
                 this.usuarios.next(response);
             },
             err => {
-                alert(err.error.toString());
+                alert(err.error[0] != null ? err.error[0].Mensagem : err.error.mensagem);
             }
         )
     }

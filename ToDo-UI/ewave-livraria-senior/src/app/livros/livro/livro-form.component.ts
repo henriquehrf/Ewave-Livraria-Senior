@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Livro } from './livro';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { LivroService } from './livro.service';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'todo-livro',
@@ -14,6 +15,7 @@ export class LivroFormComponent implements OnInit {
   @Input() livro: Livro;
   @Output() exibeMenuNovo = new EventEmitter<boolean>();
   file: File;
+  endPointImagem: string
 
   livroForm: FormGroup;
   constructor(private livroService: LivroService, private formBuilder: FormBuilder) {
@@ -22,6 +24,7 @@ export class LivroFormComponent implements OnInit {
   ngOnInit(): void {
     this.novoFormulario();
     this.limparFormulario();
+    this.endPointImagem = environment.endPointImagem;
   }
 
   novoFormulario() {
@@ -53,7 +56,7 @@ export class LivroFormComponent implements OnInit {
           livro.guidCapa = guid['guid'];
           this.salvarLivro(livro);
         },
-        err => alert(err.error.toString())
+        err =>  alert(err.error[0] != null ? err.error[0].Mensagem : err.error.mensagem)
       )
     } else {
       this.salvarLivro(livro);
@@ -70,7 +73,7 @@ export class LivroFormComponent implements OnInit {
           alert("Salvo com sucesso!");
           this.voltar();
         },
-        err => alert(err.error.toString())
+        err =>  alert(err.error[0] != null ? err.error[0].Mensagem : err.error.mensagem)
       )
     } else {
 
@@ -79,7 +82,7 @@ export class LivroFormComponent implements OnInit {
           alert("Salvo com sucesso!");
           this.voltar();
         },
-        err => alert(err.error.toString())
+        err =>  alert(err.error[0] != null ? err.error[0].Mensagem : err.error.mensagem)
       )
     }
   }
