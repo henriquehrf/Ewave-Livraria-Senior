@@ -31,7 +31,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build
       run: |
-        npm ci ./ToDo-UI/ewave-livraria-senior/
-        npm run build ./ToDo-UI/ewave-livraria-senior/
+        npm ci 
+        npm run build 
+        working-directory: ./ToDo-UI/ewave-livraria-senior/
       env:
         CI: true
