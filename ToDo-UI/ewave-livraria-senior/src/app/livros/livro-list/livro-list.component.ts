@@ -70,6 +70,7 @@ export class LivroListComponent implements OnInit {
           },
           err => {
             alert(err.error[0] != null ? err.error[0].Mensagem : err.error.mensagem);
+            this.buscarDados(this.termoPesquisa, 1);
           }
         )
       }
