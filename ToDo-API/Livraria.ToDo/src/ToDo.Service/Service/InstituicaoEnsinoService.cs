@@ -24,7 +24,7 @@ namespace ToDo.Service.Service
 		public InstituicaoEnsino Inserir(InstituicaoEnsino instituicaoEnsino)
 		{
 			_notificationContext.AddNotifications(instituicaoEnsino.Notifications);
-			_notificationContext.AddNotificationsIgnoreIsEmpty(new CamposObrigatoriosInstituicaoEnsino(instituicaoEnsino).Validar());
+			_notificationContext.AddNotificationsIgnoreIsEmpty(new CamposObrigatoriosInstituicaoEnsinoValidator(instituicaoEnsino).Validar());
 
 			if (_notificationContext.Valid)
 				return _instituicaoEnsinoRepository.Inserir(instituicaoEnsino);
@@ -35,7 +35,7 @@ namespace ToDo.Service.Service
 		public void Alterar(InstituicaoEnsino instituicaoEnsino)
 		{
 			_notificationContext.AddNotifications(instituicaoEnsino.Notifications);
-			_notificationContext.AddNotificationsIgnoreIsEmpty(new CamposObrigatoriosInstituicaoEnsino(instituicaoEnsino).Validar());
+			_notificationContext.AddNotificationsIgnoreIsEmpty(new CamposObrigatoriosInstituicaoEnsinoValidator(instituicaoEnsino).Validar());
 			_notificationContext.AddNotificationIgnoreIsEmpty(new DesativarInstituicaoEnsinoValidator(_usuarioRepository, instituicaoEnsino).Validar());
 
 

@@ -4,11 +4,11 @@ using ToDo.Domain.Entities;
 
 namespace ToDo.Infra.Shared.Validators
 {
-	public class CamposObrigatoriosInstituicaoEnsino : BaseValidator<IList<Notification>>
+	public class CamposObrigatoriosInstituicaoEnsinoValidator : BaseValidator<IList<Notification>>
 	{
 		private readonly InstituicaoEnsino _instituicaoEnsino;
 
-		public CamposObrigatoriosInstituicaoEnsino(InstituicaoEnsino instituicaoEnsino)
+		public CamposObrigatoriosInstituicaoEnsinoValidator(InstituicaoEnsino instituicaoEnsino)
 		{
 			_instituicaoEnsino = instituicaoEnsino;
 		}

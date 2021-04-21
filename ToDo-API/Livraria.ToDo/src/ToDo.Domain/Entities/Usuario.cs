@@ -42,23 +42,28 @@ namespace ToDo.Domain.Entities
 				email._contract);
 		}
 
-		public Nome Nome { get; }
-		public Endereco Endereco { get; }
-		public Cpf Cpf { get; }
-		public Telefone Telefone { get; }
-		public Email Email { get; }
-		public string Login { get; }
-		public string Senha { get; }
-		public DateTime? DataSuspencao { get; }
-		public int PerfilUsuario { get; }
-		public Guid? GuidFoto { get; }
-		public int IdInstituicaoEnsino { get; }
-		public bool Ativo { get; }
+		public Nome Nome { get; private set; }
+		public Endereco Endereco { get; private set; }
+		public Cpf Cpf { get; private set; }
+		public Telefone Telefone { get; private set; }
+		public Email Email { get; private set; }
+		public string Login { get; private set; }
+		public string Senha { get; private set; }
+		public DateTime? DataSuspencao { get; private set; }
+		public int PerfilUsuario { get; private set; }
+		public Guid? GuidFoto { get; private set; }
+		public int IdInstituicaoEnsino { get; private set; }
+		public bool Ativo { get; private set; }
 
 		public virtual InstituicaoEnsino InstituicaoEnsino { get; }
-
 		public virtual ICollection<Emprestimo> Emprestimos { get; } = new HashSet<Emprestimo>();
 		public virtual ICollection<Reserva> Reservas { get; } = new HashSet<Reserva>();
+
+
+		public void DefinirDataSuspencaoUsuario(DateTime data)
+		{
+			DataSuspencao = data;
+		}
 
 	}
 }

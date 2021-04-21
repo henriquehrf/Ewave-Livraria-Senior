@@ -23,7 +23,7 @@ export class LivroService {
     emprestarLivro(emprestimo) {
         return this.http
             .post(
-                API_URL + '/api/emprestimo/inserir',
+                API_URL + '/api/emprestimos/inserir',
                 emprestimo,
                 { observe: 'response' },
             );
@@ -32,7 +32,7 @@ export class LivroService {
     devolverLivro(emprestimo: Emprestimo) {
         return this.http
             .put(
-                API_URL + '/api/emprestimo',
+                API_URL + '/api/emprestimos',
                 emprestimo,
                 { observe: 'response' },
             );

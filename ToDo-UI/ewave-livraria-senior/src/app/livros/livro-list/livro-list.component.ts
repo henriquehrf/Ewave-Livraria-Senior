@@ -66,10 +66,10 @@ export class LivroListComponent implements OnInit {
         this.livroService.emprestarLivro(emprestimo).subscribe(
           () => {
             alert("Emprestimo feito com sucesso!");
-            this.buscarDados("", 1);
+            this.buscarDados(this.termoPesquisa, 1);
           },
           err => {
-            alert(err.error.toString());
+            alert(err.error[0] != null ? err.error[0].Mensagem : err.error.mensagem);
           }
         )
       }

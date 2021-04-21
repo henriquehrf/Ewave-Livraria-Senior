@@ -17,7 +17,7 @@ namespace ToDo.Application.Controllers
 {
 	[ApiController]
 	[Authorize("Bearer")]
-	[Route("api/[controller]/")]
+	[Route("api/emprestimos/")]
 	public class EmprestimoController : Controller
 	{
 		private readonly IUnitOfWork _unitOfWork;
@@ -41,10 +41,8 @@ namespace ToDo.Application.Controllers
 		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(EmprestimoViewModel))]
 		[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IList<NotificationResponse>))]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
-		public IActionResult InserirEmprestimo(EmprestimoViewModel emprestimoVm)
+		public IActionResult Inserir(EmprestimoViewModel emprestimoVm)
 		{
-			emprestimoVm.DataEmprestimo = DateTime.Now;
-			emprestimoVm.DataPrevistaDevolucao = DateTime.Now.AddDays(30);
 			var emprestimo = _emprestimoService.Inserir(emprestimoVm.ToEntity());
 			if (_notificationContext.Notifications.Count > 0)
 				return BadRequest(_notificationContext.Notifications);
@@ -79,7 +77,7 @@ namespace ToDo.Application.Controllers
 			return StatusCode(StatusCodes.Status200OK, emprestimos);
 		}
 
-		[HttpGet("todos")]
+		[HttpGet("todos-ativos")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<EmprestimoDto>))]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErroResponse))]
 		public async Task<IActionResult> Todos()

@@ -25,7 +25,7 @@ export class EmprestimoService {
         emprestimo.append('idLivro', emprestimo2.idLivro.toString());
         return this.http
             .post(
-                API_URL + '/api/emprestimo/inserir',
+                API_URL + '/api/emprestimos/inserir',
                 emprestimo,
                 { observe: 'response' },
             );
@@ -34,21 +34,21 @@ export class EmprestimoService {
     retornarEmprestimosAtivoPorIdUsuario(id) {
         return this.http
             .get(
-                API_URL + '/api/emprestimo/buscar-por-usuario?idUsuario=' + id,
+                API_URL + '/api/emprestimos/buscar-por-usuario?idUsuario=' + id,
             );
     }
 
     retornarTodosEmprestimoAtivo() {
         return this.http
             .get(
-                API_URL + '/api/emprestimo/todos',
+                API_URL + '/api/emprestimos/todos-ativos',
             );
     }
 
     devolverLivro(emprestimo: Emprestimo) {
         return this.http
             .put(
-                API_URL + '/api/emprestimo/devolver',
+                API_URL + '/api/emprestimos/devolver',
                 emprestimo,
                 { observe: 'response' },
             );

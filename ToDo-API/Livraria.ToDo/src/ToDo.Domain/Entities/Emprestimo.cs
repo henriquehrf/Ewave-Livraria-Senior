@@ -28,8 +28,17 @@ namespace ToDo.Domain.Entities
 		public virtual Usuario Usuario { get; private set; }
 		public virtual Livro Livro { get; private set; }
 
+		public void DefinirDataEmprestimo()
+		{
+			DataEmprestimo = DateTime.Now;
+		}
 
-		public void DevolverEmprestimo()
+		public void DefinirDataPrevistaDevolucao()
+		{
+			DataPrevistaDevolucao = DateTime.Now.AddDays(30);
+		}
+
+		public void DefinirDataDevolucao()
 		{
 			DataDevolucao = DateTime.Now;
 		}
