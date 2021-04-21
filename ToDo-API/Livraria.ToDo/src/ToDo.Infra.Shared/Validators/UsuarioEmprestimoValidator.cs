@@ -44,6 +44,7 @@ namespace ToDo.Infra.Shared.Validators
 												 (e.DataDevolucao == null)))).Any())
 				validacoes.Add(new Notification(string.Empty, "Não é possível efetivar o empréstimo, pois o usuário tem um empréstimo em atraso."));
 
+
 			return validacoes;
 		}
 	}

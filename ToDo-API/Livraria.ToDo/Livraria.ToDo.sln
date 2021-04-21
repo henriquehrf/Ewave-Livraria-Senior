@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Application", "src\ToDo.Application\ToDo.Application.csproj", "{F665A82B-A275-4713-8BBB-BB5F8E6F5454}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Application", "src\ToDo.Application\ToDo.Application.csproj", "{F665A82B-A275-4713-8BBB-BB5F8E6F5454}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Domain", "src\ToDo.Domain\ToDo.Domain.csproj", "{FD633897-5379-4551-B93C-C3A0794ADC3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Domain", "src\ToDo.Domain\ToDo.Domain.csproj", "{FD633897-5379-4551-B93C-C3A0794ADC3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Infra.CrossCutting", "src\Todo.Infra.CrossCutting\Todo.Infra.CrossCutting.csproj", "{EE251CBF-642A-4F32-8A79-B7C27145E6FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Infra.CrossCutting", "src\Todo.Infra.CrossCutting\Todo.Infra.CrossCutting.csproj", "{EE251CBF-642A-4F32-8A79-B7C27145E6FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Infra.Dapper", "src\ToDo.Infra.Dapper\ToDo.Infra.Dapper.csproj", "{1207CD5C-2126-4E8E-A1B1-4F2044AAB3B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Infra.Dapper", "src\ToDo.Infra.Dapper\ToDo.Infra.Dapper.csproj", "{1207CD5C-2126-4E8E-A1B1-4F2044AAB3B6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Infra.Data.EF", "src\ToDo.Infra.EF\ToDo.Infra.Data.EF.csproj", "{B8F88102-AE04-4216-AB75-764F5ACD894E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Service", "src\ToDo.Service\ToDo.Service.csproj", "{7AD9B409-87F0-42FD-B2FF-758DDB6DAFF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Service", "src\ToDo.Service\ToDo.Service.csproj", "{7AD9B409-87F0-42FD-B2FF-758DDB6DAFF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Infra.Shared", "src\ToDo.Infra.Shared\ToDo.Infra.Shared.csproj", "{D37261FD-5ED0-4F19-A0BD-09128F66D009}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Infra.Shared", "src\ToDo.Infra.Shared\ToDo.Infra.Shared.csproj", "{D37261FD-5ED0-4F19-A0BD-09128F66D009}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Service.Test", "test\ToDo.Service.Test\ToDo.Service.Test.csproj", "{97F3E4F6-95FD-45A9-886B-21D76E1433C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{D37261FD-5ED0-4F19-A0BD-09128F66D009}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D37261FD-5ED0-4F19-A0BD-09128F66D009}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D37261FD-5ED0-4F19-A0BD-09128F66D009}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97F3E4F6-95FD-45A9-886B-21D76E1433C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97F3E4F6-95FD-45A9-886B-21D76E1433C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97F3E4F6-95FD-45A9-886B-21D76E1433C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97F3E4F6-95FD-45A9-886B-21D76E1433C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
