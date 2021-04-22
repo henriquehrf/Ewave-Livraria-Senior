@@ -1,0 +1,17 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+version: '3.4'
+
+services:
+  todoapplication:
+    image: todoapplication
+    build:
+      context: .
+      dockerfile: src/ToDo.Application/Dockerfile
+    ports:
+      - 32768:442
+      - 32767:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw

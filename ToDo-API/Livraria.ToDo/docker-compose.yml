@@ -1,0 +1,29 @@
+version: '3.6'
+
+services:
+    sql-server-db:
+      container_name: sql-server-db
+      image: sql-server-db
+      ports:
+        - "1433:1433"
+      environment:
+        SA_PASSWORD: "Cap1varaD@C3rrad@"
+        ACCEPT_EULA: "Y"
+      build:
+        context: .
+        dockerfile: ./script/Dockerfile
+        
+    todo_api:
+        container_name: todo_api
+        image: todo_api
+        restart: always
+        build:
+          context: .
+          dockerfile: src/ToDo.Application/Dockerfile
+        ports:
+          - "64978:80"
+        depends_on: 
+          - sql-server-db
+          
+    
+
