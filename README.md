@@ -145,7 +145,7 @@ UI: <img src="https://github.com/henriquehrf/Ewave-Livraria-Senior/actions/workf
 
 1º: Certifique-se também que as portas ```4200, 64978 e 1433``` estão liberadas.
 
-2º: Abra o terminal, entre na raiz ToDo-API e ToDo-UI do projeto e execute o comando:
+2º: Após baixar o projeto, abra o terminal e entre na raiz ToDo-API e ToDo-UI do projeto e execute o comando:
 ```docker-compose up --build```
 
 
