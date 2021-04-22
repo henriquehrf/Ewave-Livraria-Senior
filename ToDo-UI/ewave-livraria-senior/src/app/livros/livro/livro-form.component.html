@@ -4,10 +4,10 @@
 		<br />
 		<form [formGroup]="livroForm" *ngIf="livro">
 			<div class="form-group" style="height: 200px;">
-				<div style="height: 200px;width: 150px;" class="float-left">
-					<img *ngIf="livro.arquivoCapa" [src]="livro.arquivoCapa" height="200" class="img-thumbnail">
+				<div style="height: 200px !important;width: 150px;" class="float-left">
+					<img *ngIf="livro.arquivoCapa" [src]="livro.arquivoCapa" style="max-height: 200px !important;" class="img-thumbnail">
 					<img *ngIf="(!livro.arquivoCapa)"
-					src={{endPointImagem}}{{livro.guidCapa}}  height="200"
+					src={{endPointImagem}}{{livro.guidCapa}} style="max-height: 200px !important;" 
 						class="img-thumbnail" />
 				</div>
 			</div>
