@@ -26,7 +26,7 @@ jobs:
       - name: Build
         run: dotnet build --no-restore ./ToDo-API/Livraria.ToDo/
       - name: dotnet publish
-        run: dotnet publish -c -o ./ToDo-API/Livraria.ToDo/
+        run: dotnet publish -c Release -r win-x64 --output ./ToDo-API/Livraria.ToDo/ Livraria.ToDo.sln
         
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
