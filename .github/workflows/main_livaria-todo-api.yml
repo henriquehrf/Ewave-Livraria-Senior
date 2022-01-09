@@ -26,7 +26,7 @@ jobs:
         run: dotnet build --configuration Release ./ToDo-API/Livraria.ToDo/
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/ToDo-API/Livraria.ToDo/
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/Ewave-Livraria-Senior/Ewave-Livraria-Senior/ToDo-API/
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
